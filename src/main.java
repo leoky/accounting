@@ -1,12 +1,14 @@
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Leonardy
@@ -18,6 +20,9 @@ public class main extends javax.swing.JFrame {
      */
     public main() {
         initComponents();
+        if (loadJurnal > 10) {
+            loadJurnal = 1;
+        }
     }
 
     /**
@@ -31,6 +36,18 @@ public class main extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jMenuItem1 = new javax.swing.JMenuItem();
+        dMenuJurnal = new javax.swing.JDialog();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        dEditorJurnal = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -42,6 +59,8 @@ public class main extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -50,12 +69,136 @@ public class main extends javax.swing.JFrame {
 
         jMenuItem1.setText("jMenuItem1");
 
+        dMenuJurnal.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        dMenuJurnal.setLocation(new java.awt.Point(400, 300));
+        dMenuJurnal.setMinimumSize(new java.awt.Dimension(400, 300));
+        dMenuJurnal.setPreferredSize(new java.awt.Dimension(400, 300));
+
+        jButton13.setText("CREATE NEW JURNAL");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setText("USE EXCISTING JURNAL");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setText("CANCEL");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dMenuJurnalLayout = new javax.swing.GroupLayout(dMenuJurnal.getContentPane());
+        dMenuJurnal.getContentPane().setLayout(dMenuJurnalLayout);
+        dMenuJurnalLayout.setHorizontalGroup(
+            dMenuJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dMenuJurnalLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addGroup(dMenuJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(dMenuJurnalLayout.createSequentialGroup()
+                        .addComponent(jButton15)
+                        .addGap(43, 43, 43))
+                    .addComponent(jButton13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
+        );
+        dMenuJurnalLayout.setVerticalGroup(
+            dMenuJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dMenuJurnalLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jButton13)
+                .addGap(18, 18, 18)
+                .addComponent(jButton14)
+                .addGap(30, 30, 30)
+                .addComponent(jButton15)
+                .addContainerGap(119, Short.MAX_VALUE))
+        );
+
+        dEditorJurnal.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        dEditorJurnal.setLocation(new java.awt.Point(400, 300));
+        dEditorJurnal.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        jLabel1.setText("CREATE NEW JURNAL");
+
+        jLabel2.setText("YEAR");
+
+        jLabel3.setText("MONTH");
+
+        jButton16.setText("CREATE");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        jButton17.setText("CANCEL");
+
+        javax.swing.GroupLayout dEditorJurnalLayout = new javax.swing.GroupLayout(dEditorJurnal.getContentPane());
+        dEditorJurnal.getContentPane().setLayout(dEditorJurnalLayout);
+        dEditorJurnalLayout.setHorizontalGroup(
+            dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dEditorJurnalLayout.createSequentialGroup()
+                .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dEditorJurnalLayout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dEditorJurnalLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jButton16)
+                                .addGap(30, 30, 30)
+                                .addComponent(jButton17))
+                            .addGroup(dEditorJurnalLayout.createSequentialGroup()
+                                .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(41, 41, 41)
+                                .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                                    .addComponent(jTextField1)))))
+                    .addGroup(dEditorJurnalLayout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(jLabel1)))
+                .addContainerGap(120, Short.MAX_VALUE))
+        );
+        dEditorJurnalLayout.setVerticalGroup(
+            dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dEditorJurnalLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton16)
+                    .addComponent(jButton17))
+                .addGap(85, 85, 85))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
 
         jButton1.setText("Home");
         buttonGroup1.add(jButton1);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Chart");
+        jButton2.setText("Product");
         buttonGroup1.add(jButton2);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,15 +208,30 @@ public class main extends javax.swing.JFrame {
 
         jButton3.setText("customer");
         buttonGroup1.add(jButton3);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("supplier");
         buttonGroup1.add(jButton4);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("inventory");
         buttonGroup1.add(jButton5);
 
         jButton6.setText("jurnal");
         buttonGroup1.add(jButton6);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("General Ledger");
         jButton7.setBorderPainted(false);
@@ -87,6 +245,20 @@ public class main extends javax.swing.JFrame {
 
         jButton10.setText("report");
         buttonGroup1.add(jButton10);
+
+        jButton11.setText("Chart");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setText("Jurnal view");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,6 +274,8 @@ public class main extends javax.swing.JFrame {
             .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,15 +291,19 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jButton5)
                 .addGap(18, 18, 18)
                 .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton12)
                 .addGap(18, 18, 18)
                 .addComponent(jButton7)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton8)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton9)
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
                 .addComponent(jButton10)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton11)
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
@@ -134,11 +312,11 @@ public class main extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1123, Short.MAX_VALUE)
+            .addGap(0, 1273, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 659, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -149,7 +327,7 @@ public class main extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1242, Short.MAX_VALUE)
+            .addGap(0, 1392, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,11 +346,120 @@ public class main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    Chart c = new Chart();
+    Product product = new Product();
+    Supplier supplier = new Supplier();
+    Customer customer = new Customer();
+    Jurnal jurnal = new Jurnal();
+    Chart chart = new Chart();
+    JurnalView jurnalview = new JurnalView();
+
+    int menu = 0;
+    int loadJurnal = 0;
+
+    public void homeButton() {
+        jPanel2.setVisible(false);
+        customer.setVisible(false);
+        product.setVisible(false);
+        supplier.setVisible(false);
+        jurnal.setVisible(false);
+        chart.setVisible(false);
+        jurnalview.setVisible(false);
+    }
+
+    public void ChangeIcon() {
+        if (menu == 0) {
+            jLabel1.setText("CREATE NEW JURNAL");
+            jButton16.setText("CREATE");
+        }
+        if (menu == 1) {
+            jLabel1.setText("EXCISTING JURNAL");
+            jButton16.setText("ENTER");
+        }
+    }
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        add(c,BorderLayout.CENTER);
-        c.setVisible(true);
+        homeButton();
+        add(product, BorderLayout.CENTER);
+        product.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        homeButton();
+        add(customer, BorderLayout.CENTER);
+        customer.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        homeButton();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        homeButton();
+        add(supplier, BorderLayout.CENTER);
+        supplier.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        homeButton();
+        if (loadJurnal > 0) {
+            add(jurnal, BorderLayout.CENTER);
+            jurnal.setVisible(true);
+        } else {
+            dMenuJurnal.setVisible(true);
+            loadJurnal++;
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        homeButton();
+        add(chart, BorderLayout.CENTER);
+        chart.setVisible(true);
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        homeButton();
+        add(new JurnalView(), BorderLayout.CENTER);
+        new JurnalView().setVisible(true);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+//for jurnal dialog 
+    //create bttuon
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        dMenuJurnal.setVisible(false);
+        dEditorJurnal.setVisible(true);
+        ChangeIcon();
+    }//GEN-LAST:event_jButton13ActionPerformed
+    //enter
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        menu = 1;
+        dMenuJurnal.setVisible(false);
+        dEditorJurnal.setVisible(true);
+        ChangeIcon();
+    }//GEN-LAST:event_jButton14ActionPerformed
+    //cancel button
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        menu = 0;
+        dMenuJurnal.setVisible(false);
+        loadJurnal--;
+    }//GEN-LAST:event_jButton15ActionPerformed
+    //ok button dialog
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        if (menu == 0) {
+            dEditorJurnal.setVisible(false);
+//            DataBase.getExecuteUpdate("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
+//                    "-"+jTextField2.getText()+"-1,0)");
+            System.out.println("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
+                    "-"+jTextField2.getText()+"-1,0)");
+            DataBase.date=jTextField1.getText()+"-"+jTextField2.getText();
+            System.out.println(DataBase.date);
+            homeButton();
+            add(jurnal, BorderLayout.CENTER);
+            jurnal.setVisible(true);
+        }
+        if(menu==1){
+            
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +489,13 @@ public class main extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+//        JFrame frame = new JFrame();
+//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//        int height = screenSize.height;
+//        int width = screenSize.width;
+//        frame.setSize(width / 2, height / 2);
+//        System.out.println(height);
+//        System.out.println(width);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new main().setVisible(true);
@@ -211,8 +505,17 @@ public class main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JDialog dEditorJurnal;
+    private javax.swing.JDialog dMenuJurnal;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -221,6 +524,9 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -228,5 +534,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
