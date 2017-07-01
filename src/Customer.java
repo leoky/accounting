@@ -41,6 +41,7 @@ public class Customer extends javax.swing.JPanel {
 //    }
 //
 //    );
+    String sql="SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `customer`";
     class customer {
 
         private String id;
@@ -320,7 +321,7 @@ public class Customer extends javax.swing.JPanel {
                         + jTextField1.getText() + "'," + "'" + jTextField2.getText() + "'," + "'"
                         + jTextField3.getText() + "'," + "'" + jTextField4.getText() + "')";
                 System.out.println(sql);
-                DataBase.getExecuteUpdate(sql);
+                DataBase.setExecuteUpdate(sql);
                 clearText();
                 updateTable();
             } catch (Exception e) {
@@ -334,7 +335,7 @@ public class Customer extends javax.swing.JPanel {
                         + "', cust_phone='" + jTextField3.getText() + "', cust_address = '" + jTextField4.getText()
                         + "' WHERE cust_id='" + s.substring(1) + "'";
                 System.out.println(sql);
-                DataBase.getExecuteUpdate(sql);
+                DataBase.setExecuteUpdate(sql);
                 clearText();
                 updateTable();
                 jButton3.setText("ADD");
@@ -346,6 +347,7 @@ public class Customer extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 //refresh button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//        sql="SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `customer`where cust_id";
         updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 //edit button
@@ -373,7 +375,7 @@ public class Customer extends javax.swing.JPanel {
             int check = JOptionPane.showConfirmDialog(this, "ARE YOU WANT TO DELETE ID = " + tCust.getValueAt(tCust.getSelectedRow(), 0));
             if (check == JOptionPane.YES_OPTION) {
                 String sql = "DELETE FROM CUSTOMER WHERE cust_id='" + s.substring(1) + "'";
-                DataBase.getExecuteUpdate(sql);
+                DataBase.setExecuteUpdate(sql);
                 updateTable();
                 System.out.println(sql);
                 JOptionPane.showMessageDialog(this, "DELETE SUCCESS");

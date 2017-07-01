@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class JurnalView extends javax.swing.JPanel {
 
     String date = DataBase.date;
+
     /**
      * Creates new form JurnalView
      */
@@ -28,7 +29,7 @@ public class JurnalView extends javax.swing.JPanel {
 
     public JurnalView() {
         initComponents();
-        updateTable();
+        Show_In_JTable();
         jTextField1.setText(DataBase.date);
     }
 
@@ -113,6 +114,7 @@ public class JurnalView extends javax.swing.JPanel {
         System.out.println("date" + date);
         ArrayList<jurnalview> list = new ArrayList<jurnalview>();
         String sql = "SELECT * FROM `jurnal` WHERE JURNAL_DATE LIKE '" + date + "-%'";
+        System.out.println(sql);
         Statement st;
         ResultSet rs;
         try {
@@ -149,6 +151,9 @@ public class JurnalView extends javax.swing.JPanel {
             col[6] = list.get(i).getDescription();
             model.addRow(col);
         }
+//        for (int i = 0; i < list.size(); i++) {
+//            list.remove(i);
+//        }
     }
 
     @SuppressWarnings("unchecked")
@@ -178,6 +183,11 @@ public class JurnalView extends javax.swing.JPanel {
         });
 
         jButton3.setText("PRINT");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("DELETE");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +256,7 @@ public class JurnalView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 //refresh button
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        date = DataBase.date;
+//        date = DataBase.date;
         updateTable();
     }//GEN-LAST:event_jButton2ActionPerformed
 //delete button
@@ -255,7 +265,7 @@ public class JurnalView extends javax.swing.JPanel {
             int check = JOptionPane.showConfirmDialog(this, "ARE YOU WANT TO DELETE ID = " + jTable1.getValueAt(jTable1.getSelectedRow(), 0));
             if (check == JOptionPane.YES_OPTION) {
                 String sql = "DELETE FROM JURNAL WHERE jurnal_id='" + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "'";
-                DataBase.getExecuteUpdate(sql);
+                DataBase.setExecuteUpdate(sql);
                 updateTable();
                 JOptionPane.showMessageDialog(this, "DELETE SUCCESS");
             }
@@ -266,17 +276,24 @@ public class JurnalView extends javax.swing.JPanel {
 //search buton
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-//            Statement st = DataBase.getStatement();
-//            ResultSet sr = st.executeQuery(sql);
-//            DataBase.getExecuteUpdate("SELECT * fROM `jurnal` WHERE JURNAL_DATE LIKE '" + jTextField1.getText() + "-%'");
-//            System.out.println("SELECT * fROM `jurnal` WHERE JURNAL_DATE LIKE '" + jTextField1.getText() + "-%'");
-//            updateTable();
             date = jTextField1.getText();
             updateTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int debit = 0, credit = 0;
+        int[] row = jTable1.getSelectedRows();
+        for (int i : row) {
+            debit += (Integer) jTable1.getModel().getValueAt(i, 4);
+            credit += (Integer) jTable1.getModel().getValueAt(i, 5);
+        }
+        JOptionPane.showMessageDialog(this, " Debit: " + debit + " Credit = " + credit);
+        debit = 0;
+        credit = 0;
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

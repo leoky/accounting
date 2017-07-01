@@ -72,7 +72,6 @@ public class main extends javax.swing.JFrame {
         dMenuJurnal.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dMenuJurnal.setLocation(new java.awt.Point(400, 300));
         dMenuJurnal.setMinimumSize(new java.awt.Dimension(400, 300));
-        dMenuJurnal.setPreferredSize(new java.awt.Dimension(400, 300));
 
         jButton13.setText("CREATE NEW JURNAL");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +138,11 @@ public class main extends javax.swing.JFrame {
         });
 
         jButton17.setText("CANCEL");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dEditorJurnalLayout = new javax.swing.GroupLayout(dEditorJurnal.getContentPane());
         dEditorJurnal.getContentPane().setLayout(dEditorJurnalLayout);
@@ -418,8 +422,8 @@ public class main extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         homeButton();
-        add(new JurnalView(), BorderLayout.CENTER);
-        new JurnalView().setVisible(true);
+        add(jurnalview, BorderLayout.CENTER);
+        jurnalview.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
 //for jurnal dialog 
@@ -436,30 +440,49 @@ public class main extends javax.swing.JFrame {
         dEditorJurnal.setVisible(true);
         ChangeIcon();
     }//GEN-LAST:event_jButton14ActionPerformed
-    //cancel button
+    //cancel dmenu button
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         menu = 0;
         dMenuJurnal.setVisible(false);
         loadJurnal--;
     }//GEN-LAST:event_jButton15ActionPerformed
-    //ok button dialog
+    
+//ok button dialog
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        if (menu == 0) {
+        if (menu == 0) { //create new jurnal
             dEditorJurnal.setVisible(false);
-//            DataBase.getExecuteUpdate("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
-//                    "-"+jTextField2.getText()+"-1,0)");
+            DataBase.setExecuteUpdate("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
+                    "-"+jTextField2.getText()+"-1',1)");
             System.out.println("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
-                    "-"+jTextField2.getText()+"-1,0)");
+                    "-"+jTextField2.getText()+"-1',1)");
             DataBase.date=jTextField1.getText()+"-"+jTextField2.getText();
+            DataBase.jurnalId=1;
             System.out.println(DataBase.date);
             homeButton();
             add(jurnal, BorderLayout.CENTER);
             jurnal.setVisible(true);
         }
-        if(menu==1){
-            
+        if(menu==1){ // use existing juranl
+            dEditorJurnal.setVisible(false);
+//            DataBase.getExecuteUpdate("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
+//                    "-"+jTextField2.getText()+"-1,0)");
+//            System.out.println("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
+//                    "-"+jTextField2.getText()+"-1,0)");
+            DataBase.date=jTextField1.getText()+"-"+jTextField2.getText();
+            DataBase.setJurnalId();
+//            DataBase.jurnalId=0;
+            System.out.println(DataBase.date);
+            homeButton();
+            add(jurnal, BorderLayout.CENTER);
+            jurnal.setVisible(true);
         }
     }//GEN-LAST:event_jButton16ActionPerformed
+//cancel deditor button
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        menu=0;
+        dEditorJurnal.setVisible(false);
+        dMenuJurnal.setVisible(true);
+    }//GEN-LAST:event_jButton17ActionPerformed
 
     /**
      * @param args the command line arguments

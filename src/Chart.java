@@ -345,7 +345,7 @@ public class Chart extends javax.swing.JPanel {
                     String sql = "INSERT INTO CHART VALUES('" + jTextField1.getText() + "'," + "'" + jTextField2.getText() + "'," + "'"
                             + jTextArea1.getText() + "')";
                     System.out.println(sql);
-                    DataBase.getExecuteUpdate(sql);
+                    DataBase.setExecuteUpdate(sql);
                     clearText();
                     jDialog1.setVisible(false);
                     updateTable();
@@ -359,7 +359,7 @@ public class Chart extends javax.swing.JPanel {
                     String sql = "UPDATE CHART  SET chart_name='" + jTextField2.getText() + "', chart_comment ='" + jTextArea1.getText()
                             + "' WHERE chart_id='" + jTextField1.getText() + "'";
                     System.out.println(sql);
-                    DataBase.getExecuteUpdate(sql);
+                    DataBase.setExecuteUpdate(sql);
                     clearText();
                     jDialog1.setVisible(false);
                     updateTable();
@@ -403,7 +403,7 @@ public class Chart extends javax.swing.JPanel {
             int check = JOptionPane.showConfirmDialog(this, "ARE YOU WANT TO DELETE ID = " + jTable1.getValueAt(jTable1.getSelectedRow(), 0));
             if (check == JOptionPane.YES_OPTION) {
                 String sql = "DELETE FROM CHART WHERE chart_id='" + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "'";
-                DataBase.getExecuteUpdate(sql);
+                DataBase.setExecuteUpdate(sql);
                 updateTable();
                 JOptionPane.showMessageDialog(this, "DELETE SUCCESS");
             }

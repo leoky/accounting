@@ -58,7 +58,16 @@ public class Jurnal extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                pay = 1;
+                try {
+                    if (DataBase.jurnalShow == 1) {
+                        tsales2.setValueAt(cPayment.getSelectedItem(), tsales2.getSelectedRow(), 1);
+                    }
+                    if (DataBase.jurnalShow == 2) {
+                        tPur2.setValueAt(cPayment.getSelectedItem(), tPur2.getSelectedRow(), 1);
+                    }
+                } catch (Exception ee) {
+                    ee.printStackTrace();
+                }
             }
         });
     }
@@ -70,20 +79,37 @@ public class Jurnal extends javax.swing.JPanel {
             while (rs.next()) {
                 cProduct.addItem(rs.getString("chart_name"));
             }
+            cProduct.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+//                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    try {
+                        if (DataBase.jurnalShow == 1) {
+                            tsales1.setValueAt(cProduct.getSelectedItem(), tsales1.getSelectedRow(), 1);
+                        }
+                        if (DataBase.jurnalShow == 2) {
+                            tPur1.setValueAt(cProduct.getSelectedItem(), tPur1.getSelectedRow(), 1);
+                        }
+                    } catch (Exception ee) {
+                        ee.printStackTrace();
+                    }
+                }
+            });
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
     }
-    public void setComboCustomer(){
-        try{
-            Statement st= DataBase.getStatement();
+
+    public void setComboCustomer() {
+        try {
+            Statement st = DataBase.getStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM CUSTOMER");
-            while(rs.next()){
-                cPurFrom.addItem(rs.getString("cust_id"));
-                cSalesTo.addItem(rs.getString("cust_id"));
-                
+            while (rs.next()) {
+                cPurFrom.addItem(rs.getString("cust_name"));
+                cSalesTo.addItem(rs.getString("cust_name"));
+
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
     }
@@ -204,6 +230,12 @@ public class Jurnal extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        sales.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                salesComponentShown(evt);
+            }
+        });
+
         jLabel2.setText("DATE");
 
         jLabel3.setText("TO");
@@ -244,14 +276,14 @@ public class Jurnal extends javax.swing.JPanel {
         tsales1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         tsales1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Product", "QTY", "PRICE", "DISCOUNT", "TAX"
+                "Product", "PRODUCT", "QTY", "PRICE", "DISCOUNT", "TAX"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -274,14 +306,14 @@ public class Jurnal extends javax.swing.JPanel {
         tsales2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         tsales2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "PAYMENT", "PERCENT", "COMMENT"
+                "PAYMENT", "PAYMENT", "PERCENT", "COMMENT"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -317,21 +349,18 @@ public class Jurnal extends javax.swing.JPanel {
                 .addGroup(salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(salesLayout.createSequentialGroup()
-                        .addGroup(salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, salesLayout.createSequentialGroup()
+                        .addGroup(salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(salesLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(92, 92, 92)
                                 .addGroup(salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tfDate)
                                     .addComponent(cSalesTo, 0, 236, Short.MAX_VALUE)))
-                            .addComponent(jScrollPane1))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bAddProdcut)
-                            .addComponent(bRemoveProduct)
-                            .addComponent(jButton2)
-                            .addComponent(jButton4)))
+                            .addComponent(bRemoveProduct)))
                     .addGroup(salesLayout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(42, 42, 42)
@@ -343,8 +372,14 @@ public class Jurnal extends javax.swing.JPanel {
                             .addGroup(salesLayout.createSequentialGroup()
                                 .addComponent(bSubmit)
                                 .addGap(42, 42, 42)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(salesLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addGroup(salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton4))))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         salesLayout.setVerticalGroup(
             salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +403,7 @@ public class Jurnal extends javax.swing.JPanel {
                 .addGroup(salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(salesLayout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton4))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +416,7 @@ public class Jurnal extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(salesLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                                 .addComponent(jButton10)
                                 .addGap(11, 11, 11)))
                         .addGap(83, 83, 83)
@@ -393,6 +428,12 @@ public class Jurnal extends javax.swing.JPanel {
         );
 
         jTabbedPane8.addTab("SALES", sales);
+
+        jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel2ComponentShown(evt);
+            }
+        });
 
         jLabel9.setText("DATE");
 
@@ -417,18 +458,25 @@ public class Jurnal extends javax.swing.JPanel {
         tPur1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         tPur1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "PRODCUT", "QTY", "PRICE", "DISCOUNT", "TAX"
+                "PRODCUT", "PRODCUT", "QTY", "PRICE", "DISCOUNT", "TAX"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tPur1.setMaximumSize(new java.awt.Dimension(2147483647, 250));
@@ -445,12 +493,27 @@ public class Jurnal extends javax.swing.JPanel {
 
         tPur2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "PAYMENT", "PERCENT", "COMMENT"
+                "PAYMENT", "PAYMENT", "PERCENT", "COMMENT"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tPur2.setMaximumSize(new java.awt.Dimension(2147483647, 75));
         tPur2.setPreferredSize(new java.awt.Dimension(225, 75));
         tPur2.setRowHeight(25);
@@ -492,15 +555,11 @@ public class Jurnal extends javax.swing.JPanel {
                             .addComponent(tfPurDate, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cPurFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 923, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton5)
-                            .addComponent(jButton12)
-                            .addComponent(jButton13)
-                            .addComponent(jButton14)))
+                            .addComponent(jButton12)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel1)
@@ -510,8 +569,17 @@ public class Jurnal extends javax.swing.JPanel {
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 27, Short.MAX_VALUE))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jButton13))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(jButton14)))))
+                .addGap(0, 172, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,7 +604,7 @@ public class Jurnal extends javax.swing.JPanel {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton13)
-                        .addGap(26, 26, 26)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton14)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -545,8 +613,7 @@ public class Jurnal extends javax.swing.JPanel {
                         .addGap(83, 83, 83))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -596,7 +663,7 @@ public class Jurnal extends javax.swing.JPanel {
                             .addComponent(jComboBox7, 0, 157, Short.MAX_VALUE)
                             .addComponent(jComboBox8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextField15))))
-                .addContainerGap(709, Short.MAX_VALUE))
+                .addContainerGap(939, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -663,7 +730,7 @@ public class Jurnal extends javax.swing.JPanel {
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jTextField16, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jComboBox9, javax.swing.GroupLayout.Alignment.LEADING, 0, 155, Short.MAX_VALUE)))))
-                .addContainerGap(567, Short.MAX_VALUE))
+                .addContainerGap(797, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -734,7 +801,7 @@ public class Jurnal extends javax.swing.JPanel {
                 .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton11)
-                .addContainerGap(457, Short.MAX_VALUE))
+                .addContainerGap(687, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -767,7 +834,7 @@ public class Jurnal extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
+            .addGap(0, 1228, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -812,7 +879,7 @@ public class Jurnal extends javax.swing.JPanel {
             int qty = 0, price = 0, total = 0, discount = 0, tax = 0, pay = 0, totalvalue = 0, totalpay = 0;
             for (int i = 0; i < tsales1.getRowCount(); i++) {
                 for (int j = 0; j < tsales1.getColumnCount(); j++) {
-                    if (j == 1) {
+                    if (j == 2) {
                         if (tsales1.getModel().getValueAt(i, j) != null) {
                             qty = (Integer) tsales1.getModel().getValueAt(i, j);
                         } else {
@@ -820,35 +887,35 @@ public class Jurnal extends javax.swing.JPanel {
                             break;
                         }
                     }
-                    if (j == 2) {
+                    if (j == 3) {
                         if (tsales1.getModel().getValueAt(i, j) != null) {
                             price = (Integer) tsales1.getModel().getValueAt(i, j);
                             total = price * qty;
-                            String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','" +DataBase.date+"-"+tfDate.getText() +
-                                    "','4010','sales income',0," + total + ",'" + jTextArea1.getText() + "')";
-                            DataBase.getExecuteUpdate(sql);
+                            String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfDate.getText()
+                                    + "','4010','sales income',0," + total + ",'" + jTextArea1.getText() + "')";
+                            DataBase.setExecuteUpdate(sql);
                             System.out.println(sql);
                         } else {
                             JOptionPane.showMessageDialog(tPur1, "Pleae Entry Price");
                             break;
                         }
                     }
-                    if (j == 3) {
-                        if (tsales1.getModel().getValueAt(i, j) != null) {
-                            discount = qty * price * (Integer) tsales1.getModel().getValueAt(i, j) / 100;
-                            String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','" +DataBase.date+"-"+tfDate.getText() + 
-                                    "','4020','sales discount'," + discount + ",0,'" + jTextArea1.getText() + "')";
-                            System.out.println(sql);
-                            DataBase.getExecuteUpdate(sql);
-                        }
-                    }
                     if (j == 4) {
                         if (tsales1.getModel().getValueAt(i, j) != null) {
-                            tax = (qty * price - discount) * (Integer) tsales1.getModel().getValueAt(i, j) / 100;
-                            String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','" +DataBase.date+"-"+ tfDate.getText() + 
-                                    "','1050','tax out',0," + tax + ",'" + jTextArea1.getText() + "')";
+                            discount = qty * price * (Integer) tsales1.getModel().getValueAt(i, j) / 100;
+                            String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfDate.getText()
+                                    + "','4020','sales discount'," + discount + ",0,'" + jTextArea1.getText() + "')";
                             System.out.println(sql);
-                            DataBase.getExecuteUpdate(sql);
+                            DataBase.setExecuteUpdate(sql);
+                        }
+                    }
+                    if (j == 5) {
+                        if (tsales1.getModel().getValueAt(i, j) != null) {
+                            tax = (qty * price - discount) * (Integer) tsales1.getModel().getValueAt(i, j) / 100;
+                            String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfDate.getText()
+                                    + "','1050','tax out',0," + tax + ",'" + jTextArea1.getText() + "')";
+                            System.out.println(sql);
+                            DataBase.setExecuteUpdate(sql);
                         }
                     }
 
@@ -858,56 +925,70 @@ public class Jurnal extends javax.swing.JPanel {
                 discount = 0;
                 tax = 0;
                 System.out.println(totalvalue + " " + pay);
-            }
+            }//SALES PAYMENT SUBMIT
             for (int i = 0; i < tsales2.getRowCount(); i++) {
                 for (int j = 0; j < tsales2.getColumnCount(); j++) {
-                    if (j == 1) {
-                        if (cPayment.getSelectedItem() == "cash") {
+                    if (j == 2) {
+                        System.out.println("i ke berepa" + i);
+                        System.out.println("col =" + tsales2.getModel().getValueAt(i, 1));
+                        if (tsales2.getModel().getValueAt(i, 1).equals("cash")) {
                             if (pay != 0) {
                                 if (tsales2.getModel().getValueAt(i, j) != null) {
                                     totalpay = pay * (Integer) tsales2.getModel().getValueAt(i, j) / 100;
-                                    String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','"  +DataBase.date+"-"+tfDate.getText() + 
-                                            "','1010','cash'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfDate.getText()
+                                            + "','1010','cash'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
                                     System.out.println(sql);
-                                    DataBase.getExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate(sql);
                                 }
                                 if (tsales2.getModel().getValueAt(i, j) == null) {
                                     totalpay = pay;
-                                    String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','"  +DataBase.date+"-"+tfDate.getText() + 
-                                            "','1010','cash'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfDate.getText()
+                                            + "','1010','cash'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
                                     System.out.println(sql);
-                                    DataBase.getExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate(sql);
                                 }
                             }
                         }
-                        if (cPayment.getSelectedItem() == "credit") {
+                        if (tsales2.getModel().getValueAt(i, 1).equals("credit")) {
                             if (pay != 0) {
-                                if (tsales2.getModel().getValueAt(i, j) != null && pay == 0) {
+                                if (tsales2.getModel().getValueAt(i, j) != null) {
                                     totalpay = pay * (Integer) tsales2.getModel().getValueAt(i, j) / 100;
-                                    String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','"  +DataBase.date+"-"+tfDate.getText() + 
-                                            "','1030','account receivable'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfDate.getText()
+                                            + "','1030','account receivable'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
                                     System.out.println(sql);
-                                    DataBase.getExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate(sql);
                                 }
                                 if (tsales2.getModel().getValueAt(i, j) == null) {
                                     totalpay = pay;
-                                    String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','" +DataBase.date+"-"+tfDate.getText() +
-                                            "','1030','account receivable'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfDate.getText()
+                                            + "','1030','account receivable'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
                                     System.out.println(sql);
-                                    DataBase.getExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate(sql);
                                 }
                             }
                         }
-//                    }
                     }
                 }
             }
 //        System.out.println(qty + " " + price + " " + discount+" "+tax);
             System.out.println(pay);
             System.out.println(total);
+            //to add auto id
+            DataBase.jurnalId++;
+            DataBase.setExecuteUpdate("UPDATE SYSTEM SET SYSTEM_NUMBER=" + DataBase.jurnalId + " WHERE SYSTEM_DATE ='" + DataBase.date + "-1';");
+            System.out.println("UPDATE SYSTEM SET SYSTEM_NUMBER=" + DataBase.jurnalId + " WHERE SYSTEM_DATE ='" + DataBase.date + "-1';");
+            jTextArea1.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
+        //clear text
+        tfDate.setText("");
+        DefaultTableModel model = (DefaultTableModel) tsales1.getModel();
+        model.setRowCount(0);
+        model.addRow(new Object[]{});
+        DefaultTableModel model2 = (DefaultTableModel) tsales2.getModel();
+        model2.setRowCount(0);
+        model2.addRow(new Object[]{});
     }//GEN-LAST:event_bSubmitActionPerformed
 //REMOVE sales PRODUCT BUTTON
     private void bRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRemoveProductActionPerformed
@@ -941,7 +1022,7 @@ public class Jurnal extends javax.swing.JPanel {
             int qty = 0, price = 0, total = 0, discount = 0, tax = 0, pay = 0, totalvalue = 0, totalpay = 0;
             for (int i = 0; i < tPur1.getRowCount(); i++) {
                 for (int j = 0; j < tPur1.getColumnCount(); j++) {
-                    if (j == 1) {
+                    if (j == 2) {
                         if (tPur1.getModel().getValueAt(i, j) != null) {
                             qty = (Integer) tPur1.getModel().getValueAt(i, j);
                         } else {
@@ -949,35 +1030,35 @@ public class Jurnal extends javax.swing.JPanel {
                             break;
                         }
                     }
-                    if (j == 2) {
+                    if (j == 3) {
                         if (tPur1.getModel().getValueAt(i, j) != null) {
                             price = (Integer) tPur1.getModel().getValueAt(i, j);
                             total = price * qty;
-                            String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','" +DataBase.date+"-"+tfPurDate.getText() +
-                                    "','5110','purchasing'," + total + ",0,'" + jTextArea2.getText() + "')";
-                            DataBase.getExecuteUpdate(sql);
+                            String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfPurDate.getText()
+                                    + "','5110','purchasing'," + total + ",0,'" + jTextArea2.getText() + "')";
+                            DataBase.setExecuteUpdate(sql);
                             System.out.println(sql);
                         } else {
                             JOptionPane.showMessageDialog(this, "Pleae Entry Price");
                             break;
                         }
                     }
-                    if (j == 3) {
-                        if (tPur1.getModel().getValueAt(i, j) != null) {
-                            discount = qty * price * (Integer) tPur1.getModel().getValueAt(i, j) / 100;
-                            String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','" +DataBase.date+"-"+tfPurDate.getText() +
-                                    "','5120','purchasing discount',0," + discount + ",'" + jTextArea2.getText() + "')";
-                            System.out.println(sql);
-                            DataBase.getExecuteUpdate(sql);
-                        }
-                    }
                     if (j == 4) {
                         if (tPur1.getModel().getValueAt(i, j) != null) {
-                            tax = (qty * price - discount) * (Integer) tPur1.getModel().getValueAt(i, j) / 100;
-                            String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','" +DataBase.date+"-"+ tfPurDate.getText() +
-                                    "','1051','tax in'," + tax + ",0,'" + jTextArea2.getText() + "')";
+                            discount = qty * price * (Integer) tPur1.getModel().getValueAt(i, j) / 100;
+                            String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfPurDate.getText()
+                                    + "','5120','purchasing discount',0," + discount + ",'" + jTextArea2.getText() + "')";
                             System.out.println(sql);
-                            DataBase.getExecuteUpdate(sql);
+                            DataBase.setExecuteUpdate(sql);
+                        }
+                    }
+                    if (j == 5) {
+                        if (tPur1.getModel().getValueAt(i, j) != null) {
+                            tax = (qty * price - discount) * (Integer) tPur1.getModel().getValueAt(i, j) / 100;
+                            String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfPurDate.getText()
+                                    + "','1051','tax in'," + tax + ",0,'" + jTextArea2.getText() + "')";
+                            System.out.println(sql);
+                            DataBase.setExecuteUpdate(sql);
                         }
                     }
                 }
@@ -990,40 +1071,40 @@ public class Jurnal extends javax.swing.JPanel {
             //Purchasing payment 
             for (int i = 0; i < tPur2.getRowCount(); i++) {
                 for (int j = 0; j < tPur2.getColumnCount(); j++) {
-                    if (j == 1) {
-                        if (cPayment.getSelectedItem() == "cash") {
+                    if (j == 2) {
+                        if (tPur2.getModel().getValueAt(i, 1) == "cash") {
                             if (pay != 0) {
                                 if (tPur2.getModel().getValueAt(i, j) != null) {
                                     totalpay = pay * (Integer) tPur2.getModel().getValueAt(i, j) / 100;
-                                    String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','" +DataBase.date+"-"+ tfPurDate.getText() +
-                                            "','1010','cash',0," + totalpay + ",'" + jTextArea2.getText() + "')";
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfPurDate.getText()
+                                            + "','1010','cash',0," + totalpay + ",'" + jTextArea2.getText() + "')";
                                     System.out.println(sql);
-                                    DataBase.getExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate(sql);
                                 }
                                 if (tPur2.getModel().getValueAt(i, j) == null) {
                                     totalpay = pay;
-                                    String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','"  +DataBase.date+"-"+tfPurDate.getText() +
-                                            "','1010','cash',0," + totalpay + ",'" + jTextArea2.getText() + "')";
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfPurDate.getText()
+                                            + "','1010','cash',0," + totalpay + ",'" + jTextArea2.getText() + "')";
                                     System.out.println(sql);
-                                    DataBase.getExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate(sql);
                                 }
                             }
                         }
-                        if (cPayment.getSelectedItem() == "credit") {
+                        if (tPur2.getModel().getValueAt(i, 1) == "credit") {
                             if (pay != 0) {
                                 if (tPur2.getModel().getValueAt(i, j) != null) {
                                     totalpay = pay * (Integer) tPur2.getModel().getValueAt(i, j) / 100;
-                                    String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','" +DataBase.date+"-"+tfPurDate.getText() +
-                                            "','1030','account receivable',0," + totalpay + ",'" + jTextArea2.getText() + "')";
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfPurDate.getText()
+                                            + "','1030','account receivable',0," + totalpay + ",'" + jTextArea2.getText() + "')";
                                     System.out.println(sql);
-                                    DataBase.getExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate(sql);
                                 }
                                 if (tPur2.getModel().getValueAt(i, j) == null) {
                                     totalpay = pay;
-                                    String sql = "INSERT INTO JURNAL VALUES('J0" + (i + 1) + "','"  +DataBase.date+"-"+ tfPurDate.getText() + 
-                                            "','1030','account receivable',0," + totalpay + ",'" + jTextArea2.getText() + "')";
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.date + "-" + tfPurDate.getText()
+                                            + "','1030','account receivable',0," + totalpay + ",'" + jTextArea2.getText() + "')";
                                     System.out.println(sql);
-                                    DataBase.getExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate(sql);
                                 }
                             }
                         }
@@ -1032,9 +1113,22 @@ public class Jurnal extends javax.swing.JPanel {
             }
             System.out.println(pay);
             System.out.println(total);
+            //to add auto id
+            DataBase.jurnalId++;
+            DataBase.setExecuteUpdate("UPDATE SYSTEM SET SYSTEM_NUMBER=" + DataBase.jurnalId + " WHERE SYSTEM_DATE ='" + DataBase.date + "-1';");
+            System.out.println("UPDATE SYSTEM SET SYSTEM_NUMBER=" + DataBase.jurnalId + " WHERE SYSTEM_DATE ='" + DataBase.date + "-1';");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
+        //clear text
+        tfPurDate.setText("");
+        DefaultTableModel model = (DefaultTableModel) tPur1.getModel();
+        model.setRowCount(0);
+        model.addRow(new Object[]{});
+        DefaultTableModel model2 = (DefaultTableModel) tPur2.getModel();
+        model2.setRowCount(0);
+        model2.addRow(new Object[]{});
+        jTextArea2.setText("");
     }//GEN-LAST:event_jButton6ActionPerformed
 //purchasing add product button
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1064,6 +1158,16 @@ public class Jurnal extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void salesComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_salesComponentShown
+        DataBase.jurnalShow = 1;
+        System.out.println("juranl show" + DataBase.jurnalShow);
+    }//GEN-LAST:event_salesComponentShown
+
+    private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
+        DataBase.jurnalShow = 2;
+        System.out.println("juranl show" + DataBase.jurnalShow);
+    }//GEN-LAST:event_jPanel2ComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

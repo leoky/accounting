@@ -14,7 +14,9 @@ public class DataBase {
     static int total;
     static String from;
     static String date;
+    static int jurnalId;
 //    Statement st;
+    static int jurnalShow;
 
     public static Connection getConnection() {
         Connection conn;
@@ -26,21 +28,22 @@ public class DataBase {
             return null;
         }
     }
-    public static Statement getStatement(){
+
+    public static Statement getStatement() {
         Statement st;
-        try{
+        try {
             Connection connection = getConnection();
             st = connection.createStatement();
             return st;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         }
     }
-    
-    public static Statement getExecuteUpdate(String sql){
-        DataBase.sql= sql;
-        try{
+
+    public static Statement setExecuteUpdate(String sql) {
+        DataBase.sql = sql;
+        try {
             Connection connection = getConnection();
             Statement st = getStatement();
             st.executeUpdate(sql);
@@ -48,31 +51,53 @@ public class DataBase {
             st.close();
             connection.close();
             return st;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         }
     }
-    public static ResultSet getCount(String from){
-        DataBase.from= from;
-        try{
-            sql="SELECT COUNT(*) AS total FROM "+DataBase.from+";";
-            Connection connection = getConnection();
+
+    public static ResultSet getCount(String from) {
+        DataBase.from = from;
+        try {
+//            sql = "SELECT COUNT(*) AS total FROM " + DataBase.from + ";";
+//            Connection connection = getConnection();
             Statement st = getStatement();
             ResultSet rs;
-            rs = st.executeQuery(sql);
-            while(rs.next()){
-                DataBase.total=rs.getInt("total");
+            rs = st.executeQuery("SELECT COUNT(*) AS total FROM " + DataBase.from + ";");
+            while (rs.next()) {
+                DataBase.total = rs.getInt("total");
             }
             return rs;
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        
+
+    }
+
+    public static ResultSet setJurnalId() {
+        try {
+            Connection connection = getConnection();
+            Statement st = getStatement();
+            ResultSet rs;
+            rs = st.executeQuery("SELECT SYSTEM_NUMBER FROM SYSTEM WHERE SYSTEM_DATE LIKE '" + DataBase.date + "-01';");
+            System.out.println("SELECT SYSTEM_NUMBER FROM SYSTEM WHERE SYSTEM_DATE LIKE '" + DataBase.date + "-01';");
+            while (rs.next()) {
+                DataBase.jurnalId = rs.getInt("SYSTEM_NUMBER");
+            }
+            System.out.println("jurnalid= "+jurnalId);
+            rs.close();
+            st.close();
+            connection.close();
+            return rs;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
-    
+
 //    public static ResultSet getResultSet(){
 //        ResultSet st;
 //        try{
@@ -83,7 +108,4 @@ public class DataBase {
 //            return null;
 //        }
 //    }
-
-    
-    
 }
