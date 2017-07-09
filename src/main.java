@@ -23,6 +23,7 @@ public class main extends javax.swing.JFrame {
         if (loadJurnal > 10) {
             loadJurnal = 1;
         }
+        
     }
 
     /**
@@ -65,6 +66,8 @@ public class main extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -72,6 +75,7 @@ public class main extends javax.swing.JFrame {
         dMenuJurnal.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dMenuJurnal.setLocation(new java.awt.Point(400, 300));
         dMenuJurnal.setMinimumSize(new java.awt.Dimension(400, 300));
+        dMenuJurnal.setModal(true);
 
         jButton13.setText("CREATE NEW JURNAL");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +127,7 @@ public class main extends javax.swing.JFrame {
         dEditorJurnal.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dEditorJurnal.setLocation(new java.awt.Point(400, 300));
         dEditorJurnal.setMinimumSize(new java.awt.Dimension(400, 300));
+        dEditorJurnal.setModal(true);
 
         jLabel1.setText("CREATE NEW JURNAL");
 
@@ -193,6 +198,7 @@ public class main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
+        setLocationByPlatform(true);
 
         jButton1.setText("Home");
         buttonGroup1.add(jButton1);
@@ -228,6 +234,11 @@ public class main extends javax.swing.JFrame {
 
         jButton5.setText("inventory");
         buttonGroup1.add(jButton5);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("jurnal");
         buttonGroup1.add(jButton6);
@@ -240,15 +251,35 @@ public class main extends javax.swing.JFrame {
         jButton7.setText("General Ledger");
         jButton7.setBorderPainted(false);
         buttonGroup1.add(jButton7);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Trial Balance");
         buttonGroup1.add(jButton8);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Profit Loss");
         buttonGroup1.add(jButton9);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("report");
         buttonGroup1.add(jButton10);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Chart");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -341,6 +372,25 @@ public class main extends javax.swing.JFrame {
         getContentPane().add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
         jMenu1.setText("File");
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("New Jurnal");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setText("Open Jurnal");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -356,10 +406,15 @@ public class main extends javax.swing.JFrame {
     Jurnal jurnal = new Jurnal();
     Chart chart = new Chart();
     JurnalView jurnalview = new JurnalView();
-
+    GeneralLedger generalledger = new GeneralLedger();
+    TrialBallance trialballance = new TrialBallance();
+    Inventory inventory = new Inventory();
+    ProfitLoss profitLoss = new ProfitLoss();
+    BalanceSheet balanceSheet = new BalanceSheet();
+    
     int menu = 0;
     int loadJurnal = 0;
-
+    
     public void homeButton() {
         jPanel2.setVisible(false);
         customer.setVisible(false);
@@ -368,8 +423,13 @@ public class main extends javax.swing.JFrame {
         jurnal.setVisible(false);
         chart.setVisible(false);
         jurnalview.setVisible(false);
+        generalledger.setVisible(false);
+        trialballance.setVisible(false);
+        inventory.setVisible(false);
+        profitLoss.setVisible(false);
+        balanceSheet.setVisible(false);
     }
-
+    
     public void ChangeIcon() {
         if (menu == 0) {
             jLabel1.setText("CREATE NEW JURNAL");
@@ -401,6 +461,7 @@ public class main extends javax.swing.JFrame {
         homeButton();
         add(supplier, BorderLayout.CENTER);
         supplier.setVisible(true);
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -409,6 +470,7 @@ public class main extends javax.swing.JFrame {
             add(jurnal, BorderLayout.CENTER);
             jurnal.setVisible(true);
         } else {
+            dMenuJurnal.setLocationRelativeTo(null);
             dMenuJurnal.setVisible(true);
             loadJurnal++;
         }
@@ -424,16 +486,18 @@ public class main extends javax.swing.JFrame {
         homeButton();
         add(jurnalview, BorderLayout.CENTER);
         jurnalview.setVisible(true);
+        jurnalview.setTf();
     }//GEN-LAST:event_jButton12ActionPerformed
 
-//for jurnal dialog 
+//for jurnal dialog menu
     //create bttuon
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        dEditorJurnal.setLocationRelativeTo(null);
         dMenuJurnal.setVisible(false);
         dEditorJurnal.setVisible(true);
         ChangeIcon();
     }//GEN-LAST:event_jButton13ActionPerformed
-    //enter
+    //enter menu
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         menu = 1;
         dMenuJurnal.setVisible(false);
@@ -446,29 +510,31 @@ public class main extends javax.swing.JFrame {
         dMenuJurnal.setVisible(false);
         loadJurnal--;
     }//GEN-LAST:event_jButton15ActionPerformed
-    
-//ok button dialog
+
+//ok button dialog editor
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         if (menu == 0) { //create new jurnal
             dEditorJurnal.setVisible(false);
-            DataBase.setExecuteUpdate("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
-                    "-"+jTextField2.getText()+"-1',1)");
-            System.out.println("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
-                    "-"+jTextField2.getText()+"-1',1)");
-            DataBase.date=jTextField1.getText()+"-"+jTextField2.getText();
-            DataBase.jurnalId=1;
+            DataBase.setExecuteUpdate("INSERT INTO SYSTEM(system_date, system_number) VALUES('" + jTextField1.getText()
+                    + "-" + jTextField2.getText() + "-1',1)");
+            System.out.println("INSERT INTO SYSTEM(system_date, system_number) VALUES('" + jTextField1.getText()
+                    + "-" + jTextField2.getText() + "-1',1)");
+            DataBase.date = jTextField1.getText() + "-" + jTextField2.getText();
+            DataBase.jurnalDate = jTextField1.getText() + "-" + jTextField2.getText();
+            DataBase.jurnalId = 1;
             System.out.println(DataBase.date);
             homeButton();
             add(jurnal, BorderLayout.CENTER);
             jurnal.setVisible(true);
         }
-        if(menu==1){ // use existing juranl
+        if (menu == 1) { // use existing juranl
             dEditorJurnal.setVisible(false);
 //            DataBase.getExecuteUpdate("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
 //                    "-"+jTextField2.getText()+"-1,0)");
 //            System.out.println("INSERT INTO SYSTEM(system_date, system_number) VALUES('"+jTextField1.getText()+
 //                    "-"+jTextField2.getText()+"-1,0)");
-            DataBase.date=jTextField1.getText()+"-"+jTextField2.getText();
+            DataBase.date = jTextField1.getText() + "-" + jTextField2.getText();
+            DataBase.jurnalDate = jTextField1.getText() + "-" + jTextField2.getText();
             DataBase.setJurnalId();
 //            DataBase.jurnalId=0;
             System.out.println(DataBase.date);
@@ -479,10 +545,55 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 //cancel deditor button
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        menu=0;
+        menu = 0;
         dEditorJurnal.setVisible(false);
         dMenuJurnal.setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        homeButton();
+        add(generalledger, BorderLayout.CENTER);
+        generalledger.setVisible(true);
+        generalledger.setTf();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        homeButton();
+        add(trialballance, BorderLayout.CENTER);
+        trialballance.setVisible(true);
+        trialballance.setTf();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        homeButton();
+        add(inventory, BorderLayout.CENTER);
+        inventory.setVisible(true);
+        inventory.setTf();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        homeButton();
+        add(profitLoss, BorderLayout.CENTER);
+        profitLoss.setVisible(true);
+        profitLoss.setTf();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        homeButton();
+        add(balanceSheet, BorderLayout.CENTER);
+        balanceSheet.setVisible(true);
+        balanceSheet.setTf();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        homeButton();
+        dMenuJurnal.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        homeButton();
+        dMenuJurnal.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -521,7 +632,9 @@ public class main extends javax.swing.JFrame {
 //        System.out.println(width);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new main().setVisible(true);
+                main m = new main();
+                m.setLocationRelativeTo(null);
+                m.setVisible(true);
             }
         });
     }
@@ -554,6 +667,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;

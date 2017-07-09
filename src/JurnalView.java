@@ -27,6 +27,10 @@ public class JurnalView extends javax.swing.JPanel {
         Show_In_JTable();
     }
 
+    public void setTf() {
+        jTextField1.setText(DataBase.date);
+    }
+
     public JurnalView() {
         initComponents();
         Show_In_JTable();
@@ -168,6 +172,12 @@ public class JurnalView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("SEARCH");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,11 +288,12 @@ public class JurnalView extends javax.swing.JPanel {
         try {
             date = jTextField1.getText();
             updateTable();
+            DataBase.date = date;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+//count buton
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int debit = 0, credit = 0;
         int[] row = jTable1.getSelectedRows();
@@ -294,6 +305,16 @@ public class JurnalView extends javax.swing.JPanel {
         debit = 0;
         credit = 0;
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        try {
+            date = jTextField1.getText();
+            updateTable();
+            DataBase.date = date;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

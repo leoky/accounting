@@ -166,6 +166,7 @@ public class Customer extends javax.swing.JPanel {
 
         jLabel5.setText("ADDRESS");
 
+        tCust.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         tCust.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -190,6 +191,7 @@ public class Customer extends javax.swing.JPanel {
             }
         });
         tCust.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tCust.setRowHeight(25);
         jScrollPane2.setViewportView(tCust);
 
         jButton1.setText("REFRESH");

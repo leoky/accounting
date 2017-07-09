@@ -13,10 +13,11 @@ public class DataBase {
     static String sql;
     static int total;
     static String from;
-    static String date;
+    static String jurnalDate;
     static int jurnalId;
 //    Statement st;
     static int jurnalShow;
+    static String date;
 
     public static Connection getConnection() {
         Connection conn;

@@ -159,6 +159,7 @@ public class Chart extends javax.swing.JPanel {
         jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jDialog1.setTitle("ADD");
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 400));
+        jDialog1.setModal(true);
 
         jLabel2.setText("Chart no");
 
@@ -250,6 +251,7 @@ public class Chart extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("CHART");
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -266,6 +268,7 @@ public class Chart extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowHeight(25);
         jScrollPane1.setViewportView(jTable1);
 
         jButton4.setText("ADD");
@@ -328,8 +331,9 @@ public class Chart extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+//add button
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        jDialog1.setLocationRelativeTo(null);
         jDialog1.setVisible(true);
         changeIcon();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -337,7 +341,7 @@ public class Chart extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         clearText();
     }//GEN-LAST:event_jButton3ActionPerformed
-//add button
+//aok button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             if (menu == 0) {
@@ -385,16 +389,26 @@ public class Chart extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton6ActionPerformed
 //edit button
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Integer row = new Integer(jTable1.getSelectedRow());
         try {
-            menu = 1;
-            changeIcon();
-            jDialog1.setVisible(true);
-            jTextField1.setText((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-            jTextField2.setText((String) jTable1.getValueAt(jTable1.getSelectedRow(), 1));
-            jTextArea1.setText((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2));
+            if (row != null) {
+                jDialog1.setLocationRelativeTo(null);
+                jTextField1.setText((String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                jTextField2.setText((String) jTable1.getValueAt(jTable1.getSelectedRow(), 1));
+                jTextArea1.setText((String) jTable1.getValueAt(jTable1.getSelectedRow(), 2));
+                menu = 1;
+                changeIcon();
+                jDialog1.setVisible(true);
+            } else {
+                jDialog1.setVisible(false);
+                JOptionPane.showMessageDialog(this, "PLEASE SELECT WHAT YOU WANT TO EDIT IN TABLE");
+                clearText();
+                menu = 0;
+            }
         } catch (Exception e) {
             jDialog1.setVisible(false);
-            JOptionPane.showMessageDialog(this, "PLEASE SELECT WHAT YOU WANT TO EDIT IN TABLE");
+            JOptionPane.showMessageDialog(this, e);
+            clearText();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
