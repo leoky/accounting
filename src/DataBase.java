@@ -11,12 +11,17 @@ public class DataBase {
     static final String USER = "root";
     static final String PASS = "abc";
     static String sql;
+
     static int total;
     static String from;
-    static String jurnalDate;
+    //be primary key
     static int jurnalId;
-//    Statement st;
     static int jurnalShow;
+    static int salesId;
+    static int purId;
+    static int payId;
+    //
+    static String jurnalDate;
     static String date;
 
     public static Connection getConnection() {
@@ -82,12 +87,15 @@ public class DataBase {
             Connection connection = getConnection();
             Statement st = getStatement();
             ResultSet rs;
-            rs = st.executeQuery("SELECT SYSTEM_NUMBER FROM SYSTEM WHERE SYSTEM_DATE LIKE '" + DataBase.date + "-01';");
-            System.out.println("SELECT SYSTEM_NUMBER FROM SYSTEM WHERE SYSTEM_DATE LIKE '" + DataBase.date + "-01';");
+            rs = st.executeQuery("SELECT * FROM SYSTEM WHERE SYSTEM_DATE LIKE '" + DataBase.date + "-01';");
+            System.out.println("SELECT * FROM SYSTEM WHERE SYSTEM_DATE LIKE '" + DataBase.date + "-01';");
             while (rs.next()) {
-                DataBase.jurnalId = rs.getInt("SYSTEM_NUMBER");
+                DataBase.jurnalId = rs.getInt("SYSTEM_jurnal");
+                DataBase.salesId = rs.getInt("SYSTEM_sales");
+                DataBase.purId = rs.getInt("SYSTEM_pur");
+                DataBase.payId = rs.getInt("SYSTEM_PAY");
             }
-            System.out.println("jurnalid= "+jurnalId);
+            System.out.println("jurnalid= " + jurnalId);
             rs.close();
             st.close();
             connection.close();
@@ -97,7 +105,6 @@ public class DataBase {
             return null;
         }
     }
-    
 
 //    public static ResultSet getResultSet(){
 //        ResultSet st;

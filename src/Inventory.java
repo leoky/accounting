@@ -110,9 +110,9 @@ public class Inventory extends javax.swing.JPanel {
         try {
             st = DataBase.getStatement();
 
-            rs = st.executeQuery("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from sales where jurnal_date like '"
+            rs = st.executeQuery("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from inventory where jurnal_date like '"
                     + date + "-%' and type like 'purchase';");
-            System.out.println("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from sales where jurnal_date like '"
+            System.out.println("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from inventory where jurnal_date like '"
                     + date + "-%' and type like 'purchase';");
 
             price abc; //abc defaut  
@@ -142,15 +142,15 @@ public class Inventory extends javax.swing.JPanel {
         ResultSet rs;
         ArrayList<String> chartList = new ArrayList<>();
         try {
-            rs = st.executeQuery("SELECT DISTINCT PRODUCT_NAME FROM sales WHERE JURNAL_DATE LIKE '" + date + "-%';");
-            System.out.println("SELECT DISTINCT PRODUCT_NAME FROM sales WHERE JURNAL_DATE LIKE '" + date + "-%';");
+            rs = st.executeQuery("SELECT DISTINCT PRODUCT_NAME FROM inventory WHERE JURNAL_DATE LIKE '" + date + "-%';");
+            System.out.println("SELECT DISTINCT PRODUCT_NAME FROM inventory WHERE JURNAL_DATE LIKE '" + date + "-%';");
             while (rs.next()) {
                 chartList.add(rs.getString("product_name"));
             }
             for (String i : chartList) {
-                System.out.println("select product_name, sum(qty), sum(value) from sales where jurnal_date like '" + date + "-%' and"
+                System.out.println("select product_name, sum(qty), sum(value) from inventory where jurnal_date like '" + date + "-%' and"
                         + " product_name like '" + i + "';");
-                rs = st.executeQuery("select product_name, sum(p_qty), sum(p_value),sum(s_qty), sum(s_value) from sales where jurnal_date like '" + date + "-%' and"
+                rs = st.executeQuery("select product_name, sum(p_qty), sum(p_value),sum(s_qty), sum(s_value) from inventory where jurnal_date like '" + date + "-%' and"
                         + " product_name like '" + i + "';");
 
                 while (rs.next()) {
@@ -197,8 +197,8 @@ public class Inventory extends javax.swing.JPanel {
         try {
             jComboBox1.removeAllItems();
             Statement st = DataBase.getStatement();
-            ResultSet rs = st.executeQuery("SELECT DISTINCT product_name FROM sales WHERE JURNAL_DATE LIKE '" + date + "-%';");
-            System.out.println("SELECT DISTINCT product_name FROM sales WHERE JURNAL_DATE LIKE '" + date + "-%';");
+            ResultSet rs = st.executeQuery("SELECT DISTINCT product_name FROM inventory WHERE JURNAL_DATE LIKE '" + date + "-%';");
+            System.out.println("SELECT DISTINCT product_name FROM inventory WHERE JURNAL_DATE LIKE '" + date + "-%';");
             while (rs.next()) {
                 jComboBox1.addItem(rs.getString("product_name"));
             }
@@ -223,6 +223,8 @@ public class Inventory extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
+
+        setBackground(new java.awt.Color(248, 238, 160));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,33 +296,35 @@ public class Inventory extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1213, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
             .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1063, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(185, 185, 185)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addGap(283, 283, 283))
         );
     }// </editor-fold>//GEN-END:initComponents
 String date;
