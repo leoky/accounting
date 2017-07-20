@@ -41,7 +41,7 @@ public class Customer extends javax.swing.JPanel {
 //    }
 //
 //    );
-    String sql="SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `customer`";
+//    String sql="SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `customer`";
     class customer {
 
         private String id;
@@ -82,7 +82,7 @@ public class Customer extends javax.swing.JPanel {
 
     public ArrayList<customer> getCustomerList() {
         ArrayList<customer> customerList = new ArrayList<customer>();
-        String sql = "SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `customer`";
+        String sql = "SELECT CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `customer`";
         Statement st;
         ResultSet rs;
         try {

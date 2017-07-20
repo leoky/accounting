@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import static java.lang.String.format;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -74,6 +75,8 @@ public class main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -212,11 +215,11 @@ public class main extends javax.swing.JFrame {
         setTitle("Daricle");
         setLocation(new java.awt.Point(0, 0));
         setLocationByPlatform(true);
-        setPreferredSize(new java.awt.Dimension(1200, 800));
+        setPreferredSize(new java.awt.Dimension(1600, 900));
 
         jPanel1.setBackground(new java.awt.Color(237, 206, 162));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton1.setText("Home");
         buttonGroup1.add(jButton1);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +228,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton2.setText("Product");
         buttonGroup1.add(jButton2);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -234,7 +237,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton3.setText("customer");
         buttonGroup1.add(jButton3);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +246,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton5.setText("inventory");
         buttonGroup1.add(jButton5);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -252,7 +255,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton6.setText("jurnal");
         buttonGroup1.add(jButton6);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +264,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton7.setText("General Ledger");
         jButton7.setBorderPainted(false);
         buttonGroup1.add(jButton7);
@@ -271,7 +274,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton8.setText("Trial Balance");
         buttonGroup1.add(jButton8);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -280,7 +283,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton9.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton9.setText("Profit Loss");
         buttonGroup1.add(jButton9);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -289,7 +292,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton10.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton10.setText("report");
         buttonGroup1.add(jButton10);
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -298,23 +301,25 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton11.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton11.setText("Chart");
+        buttonGroup1.add(jButton11);
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
 
-        jButton12.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton12.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton12.setText("Jurnal view");
+        buttonGroup1.add(jButton12);
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton4.setText("supplier");
         buttonGroup1.add(jButton4);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -323,8 +328,9 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton18.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jButton18.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton18.setText("INVOICE");
+        buttonGroup1.add(jButton18);
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18ActionPerformed(evt);
@@ -352,25 +358,25 @@ public class main extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(23, 23, 23)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
                 .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton7)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(jButton8)
                 .addGap(18, 18, 18)
                 .addComponent(jButton9)
@@ -378,13 +384,13 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jButton10)
                 .addGap(18, 18, 18)
                 .addComponent(jButton11)
-                .addGap(34, 34, 34))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
         jPanel2.setBackground(new java.awt.Color(248, 238, 160));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1000, 600));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1300, 700));
 
         jLabel4.setFont(new java.awt.Font("SimSun", 3, 140)); // NOI18N
         jLabel4.setText("Daricle");
@@ -399,10 +405,6 @@ public class main extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(jLabel4)
-                .addGap(0, 274, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -410,16 +412,20 @@ public class main extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(189, 189, 189))))
+                        .addGap(314, 314, 314))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(295, 295, 295)
+                .addComponent(jLabel4)
+                .addGap(0, 443, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(159, 159, 159)
+                .addGap(164, 164, 164)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(67, 67, 67))
         );
@@ -429,22 +435,37 @@ public class main extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(248, 238, 160));
         jPanel4.setPreferredSize(new java.awt.Dimension(1145, 40));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1204, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addGap(379, 379, 379)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(596, 596, 596))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.PAGE_START);
 
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(66, 30));
+
         jMenu1.setText("File");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 21)); // NOI18N
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jMenuItem2.setText("New Jurnal");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,6 +475,7 @@ public class main extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jMenuItem3.setText("Open Jurnal");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -465,7 +487,9 @@ public class main extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 21)); // NOI18N
 
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jMenuItem4.setText("FORMAT");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -513,6 +537,10 @@ public class main extends javax.swing.JFrame {
         invoice.setVisible(false);
     }
 
+    public void setIcon(String detail) {
+        this.detail.setJurnalDetail(detail);
+    }
+
     public void ChangeIcon() {
         if (menu == 0) {
             jLabel1.setText("CREATE NEW JURNAL");
@@ -528,6 +556,7 @@ public class main extends javax.swing.JFrame {
         homeButton();
         add(product, BorderLayout.CENTER);
         product.setVisible(true);
+//        setIcon("", "PRODUCT");
         detail.setIconDetail("PRODUCT");
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -535,12 +564,14 @@ public class main extends javax.swing.JFrame {
         homeButton();
         add(customer, BorderLayout.CENTER);
         customer.setVisible(true);
+//        setIcon("", "CUSTOMER");
         detail.setIconDetail("CUSTOMER");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         homeButton();
         jPanel2.setVisible(true);
+//        setIcon("", "");
         detail.setIconDetail("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -548,23 +579,27 @@ public class main extends javax.swing.JFrame {
         homeButton();
         add(supplier, BorderLayout.CENTER);
         supplier.setVisible(true);
+//        setIcon("", "SUPPLIER");
         detail.setIconDetail("SUPPLIER");
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         detail.setIconDetail("");
+//        setIcon("", "");
         if (loadJurnal > 0) {
             homeButton();
             add(jurnal, BorderLayout.CENTER);
             jurnal.setVisible(true);
+//            setIcon("", "JURNAL");
             detail.setIconDetail("JURNAL");
         } else {
             homeButton();
             add(jPanel2, BorderLayout.CENTER);
             dMenuJurnal.setLocationRelativeTo(null);
             dMenuJurnal.setVisible(true);
-            detail.setIconDetail("");
+//            setIcon("", "");
+//            detail.setIconDetail("");
             loadJurnal++;
         }
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -573,6 +608,7 @@ public class main extends javax.swing.JFrame {
         homeButton();
         add(chart, BorderLayout.CENTER);
         chart.setVisible(true);
+//        setIcon("", "CHART");
         detail.setIconDetail("CHART");
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -581,6 +617,7 @@ public class main extends javax.swing.JFrame {
         add(jurnalview, BorderLayout.CENTER);
         jurnalview.setVisible(true);
         jurnalview.setTf();
+//        setIcon("", "VIEW JURNAL");
         detail.setIconDetail("VIEW JURNAL");
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -628,9 +665,12 @@ public class main extends javax.swing.JFrame {
             loadJurnal++;
             System.out.println(DataBase.date);
             homeButton();
+//            setIcon("DATE : " + DataBase.jurnalDate, "JURNAL");
             add(jurnal, BorderLayout.CENTER);
             jurnal.setVisible(true);
             detail.setIconDetail("JURNAL");
+            detail.setJurnalDateDetail("DATE : " + DataBase.date);
+
         }
         if (menu == 1) { // use existing juranl
             dEditorJurnal.setVisible(false);
@@ -642,9 +682,12 @@ public class main extends javax.swing.JFrame {
 
             System.out.println(DataBase.date);
             homeButton();
+//            setIcon("DATE : " + DataBase.jurnalDate, "JURNAL");
             add(jurnal, BorderLayout.CENTER);
             jurnal.setVisible(true);
             detail.setIconDetail("JURNAL");
+            detail.setJurnalDateDetail("DATE : " + DataBase.date);
+
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 //cancel deditor button
@@ -660,6 +703,7 @@ public class main extends javax.swing.JFrame {
         generalledger.setVisible(true);
         generalledger.setTf();
         detail.setIconDetail("GENERAL LEDGER");
+//        setIcon("", "GENERAL LEDGER");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -668,6 +712,7 @@ public class main extends javax.swing.JFrame {
         trialballance.setVisible(true);
         trialballance.setTf();
         detail.setIconDetail("TRIAL BALANCE");
+//        setIcon("", "TRIAL BALANCE");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -676,6 +721,7 @@ public class main extends javax.swing.JFrame {
         inventory.setVisible(true);
         inventory.setTf();
         detail.setIconDetail("INVENTORY");
+//        setIcon("", "INVENTORY");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -683,6 +729,7 @@ public class main extends javax.swing.JFrame {
         add(profitLoss, BorderLayout.CENTER);
         profitLoss.setVisible(true);
         profitLoss.setTf();
+//        setIcon("", "PROFIT LOSS");
         detail.setIconDetail("PROFIT LOSS");
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -692,18 +739,22 @@ public class main extends javax.swing.JFrame {
         balanceSheet.setVisible(true);
         balanceSheet.setTf();
         detail.setIconDetail("BALANCE SHEET");
+//        setIcon("", "BALANCE SHEET");
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         homeButton();
         dMenuJurnal.setVisible(true);
         detail.setIconDetail("");
+//        setIcon("", "");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         homeButton();
         dMenuJurnal.setVisible(true);
         detail.setIconDetail("");
+//        setIcon("", "");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -716,6 +767,11 @@ public class main extends javax.swing.JFrame {
                 DataBase.setExecuteUpdate("TRUNCATE TABLE INVOICE");
                 DataBase.setExecuteUpdate("TRUNCATE TABLE PAYMENT");
                 JOptionPane.showMessageDialog(this, "FORMAT SUCCESS");
+                loadJurnal = 0;
+                homeButton();
+                jPanel2.setVisible(true);
+                detail.setIconDetail("");
+//                setIcon("", "");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
@@ -728,6 +784,7 @@ public class main extends javax.swing.JFrame {
         invoice.setVisible(true);
         invoice.setTf();
         detail.setIconDetail("INVOICE");
+//        setIcon("", "INVOICE");
     }//GEN-LAST:event_jButton18ActionPerformed
 
     /**
@@ -802,6 +859,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

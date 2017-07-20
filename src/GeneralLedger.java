@@ -22,9 +22,11 @@ public class GeneralLedger extends javax.swing.JPanel {
     public GeneralLedger() {
         initComponents();
     }
-    public void setTf(){
+
+    public void setTf() {
         jTextField1.setText(DataBase.date);
     }
+
     class generalledger {
 
         private String date;
@@ -32,7 +34,6 @@ public class GeneralLedger extends javax.swing.JPanel {
         private String description;
         private int debit;
         private int credit;
-        
 
         public generalledger(String date, String jurnalid, String description, int debit, int credit) {
             this.date = date;
@@ -137,8 +138,8 @@ public class GeneralLedger extends javax.swing.JPanel {
             col[0] = list.get(i).getDate();
             col[1] = list.get(i).getJurnalid();
             col[2] = list.get(i).getDescription();
-            col[3] = list.get(i).getDebit();
-            col[4] = list.get(i).getCredit();
+            col[3] = String.format("Rp.%,d", list.get(i).getDebit());
+            col[4] = String.format("Rp.%,d", list.get(i).getCredit());
             model.addRow(col);
         }
     }
@@ -187,7 +188,7 @@ public class GeneralLedger extends javax.swing.JPanel {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -214,14 +215,14 @@ public class GeneralLedger extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1178, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jButton1)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +234,7 @@ public class GeneralLedger extends javax.swing.JPanel {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -244,26 +245,26 @@ public class GeneralLedger extends javax.swing.JPanel {
         Show_In_JTable();
 
         //insert to gl database
-        int debit = 0, credit = 0;
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
-            for (int j = 0; j < jTable1.getColumnCount(); j++) {
-                if (j == 3) {
-                    debit += (Integer) jTable1.getModel().getValueAt(i, 3);
-                }
-                if (j == 4) {
-                    credit += (Integer) jTable1.getModel().getValueAt(i, 4);
-                }
-            }
-        }
-        model.addRow(new Object[]{null, null, "SUM", debit, credit});
-        DataBase.setExecuteUpdate("INSERT INTO TRIALBALLANCE VALUES('" + date + "-01','" + jComboBox1.getSelectedItem() + "',0,"
-                + debit + ", " + credit + ", 0);");
-        JOptionPane.showMessageDialog(this, " Debit: " + debit + " Credit = " + credit);
-        System.out.println("INSERT INTO TRIALBALLANCE VALUES('" + date + "-01','" + jComboBox1.getSelectedItem() + "',0,"
-                + debit + ", " + credit + ", 0);");
-        debit = 0;
-        credit = 0;
-        DataBase.date=date;
+//        int debit = 0, credit = 0;
+//        for (int i = 0; i < jTable1.getRowCount(); i++) {
+//            for (int j = 0; j < jTable1.getColumnCount(); j++) {
+//                if (j == 3) {
+//                    debit += (Integer) jTable1.getModel().getValueAt(i, 3);
+//                }
+//                if (j == 4) {
+//                    credit += (Integer) jTable1.getModel().getValueAt(i, 4);
+//                }
+//            }
+//        }
+//        model.addRow(new Object[]{null, null, "SUM", debit, credit});
+//        DataBase.setExecuteUpdate("INSERT INTO TRIALBALLANCE VALUES('" + date + "-01','" + jComboBox1.getSelectedItem() + "',0,"
+//                + debit + ", " + credit + ", 0);");
+//        JOptionPane.showMessageDialog(this, " Debit: " + debit + " Credit = " + credit);
+//        System.out.println("INSERT INTO TRIALBALLANCE VALUES('" + date + "-01','" + jComboBox1.getSelectedItem() + "',0,"
+//                + debit + ", " + credit + ", 0);");
+//        debit = 0;
+//        credit = 0;
+        DataBase.date = date;
     }//GEN-LAST:event_jButton1ActionPerformed
 //auto show gl combobox
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

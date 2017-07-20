@@ -154,18 +154,20 @@ public class Inventory extends javax.swing.JPanel {
                         + " product_name like '" + i + "';");
 
                 while (rs.next()) {
+                    int a = 1;
                     in = rs.getInt("sum(p_qty)");
                     price = rs.getInt("sum(p_value)");
                     out = rs.getInt("sum(s_qty)");
                     avg = (float) price / in;
                     total = (float) avg * (in - out);
                     totalFinal += total;
-                    model.addRow(new Object[]{0, 0, i, avg, 0, in, out, (in - out), total});
+                    model.addRow(new Object[]{a, i, String.format("Rp.%,.2f", avg), 0, in, out, (in - out), String.format("Rp.%,.2f", total)});
                     avg = 0;
                     total = 0;
+                    a++;
                 }
             }
-            model.addRow(new Object[]{null, null, null, null, null, null, null, "sum", totalFinal});
+            model.addRow(new Object[]{null, null, null, null, null, null, "sum", String.format("Rp.%,.2f", totalFinal)});
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -181,8 +183,8 @@ public class Inventory extends javax.swing.JPanel {
             col[1] = list.get(i).getJurnal();
             col[2] = list.get(i).getProduct();
             col[3] = list.get(i).getQty();
-            col[4] = list.get(i).getPrice();
-            col[5] = list.get(i).getValue();
+            col[4] = String.format("Rp.%,2d", list.get(i).getPrice());
+            col[5] = String.format("Rp.%,2d", list.get(i).getValue());
             model.addRow(col);
         }
     }
@@ -245,14 +247,14 @@ public class Inventory extends javax.swing.JPanel {
 
             },
             new String [] {
-                "INV_ID", "PRODUCT_ID", "PRODUCT_NAME", "PRICE", "OPEN", "IN", "OUT", "ENDING", "VALUE"
+                "NO", "PRODUCT_NAME", "PRICE", "OPEN", "IN", "OUT", "ENDING", "VALUE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false, false, false
+                false, false, false, true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -299,7 +301,7 @@ public class Inventory extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1063, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1096, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

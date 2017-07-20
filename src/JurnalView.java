@@ -150,8 +150,8 @@ public class JurnalView extends javax.swing.JPanel {
             col[1] = list.get(i).getDate();
             col[2] = list.get(i).getChartnum();
             col[3] = list.get(i).getChartname();
-            col[4] = list.get(i).getDebit();
-            col[5] = list.get(i).getCredit();
+            col[4] = String.format("Rp.%,d", list.get(i).getDebit());
+            col[5] = String.format("Rp.%,d", list.get(i).getCredit());
             col[6] = list.get(i).getDescription();
             model.addRow(col);
         }
@@ -225,34 +225,29 @@ public class JurnalView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setAutoscrolls(false);
         jTable1.setRowHeight(25);
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(1);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(1);
-        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addGap(38, 38, 38)
                         .addComponent(jButton1)
-                        .addGap(35, 35, 35)
+                        .addGap(37, 37, 37)
                         .addComponent(jButton2)
-                        .addGap(18, 18, 18)
+                        .addGap(38, 38, 38)
                         .addComponent(jButton3)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton4)
-                        .addGap(205, 205, 205))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton4)))
+                .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,9 +259,9 @@ public class JurnalView extends javax.swing.JPanel {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addGap(27, 27, 27)
+                .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 //refresh button
@@ -303,8 +298,17 @@ public class JurnalView extends javax.swing.JPanel {
         int debit = 0, credit = 0;
         int[] row = jTable1.getSelectedRows();
         for (int i : row) {
-            debit += (Integer) jTable1.getModel().getValueAt(i, 4);
-            credit += (Integer) jTable1.getModel().getValueAt(i, 5);
+            String a1 = (String) jTable1.getModel().getValueAt(i, 4);
+            String b1 = a1.substring(3);
+            String c1 = b1.replace(",", "");
+
+            String a2 = (String) jTable1.getModel().getValueAt(i, 5);
+            String b2 = a2.substring(3);
+            String c2 = b2.replace(",", "");
+            debit += Integer.parseInt(c1);
+            credit += Integer.parseInt(c2);
+//            debit += (Integer) jTable1.getModel().getValueAt(i, 4);
+//            credit += (Integer) jTable1.getModel().getValueAt(i, 5);
         }
         JOptionPane.showMessageDialog(this, " Debit: " + debit + " Credit = " + credit);
         debit = 0;

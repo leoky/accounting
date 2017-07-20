@@ -41,8 +41,8 @@ public class Supplier extends javax.swing.JPanel {
 //    }
 //
 //    );
-    String sql="SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `customer`";
-    class customer {
+    String sql="SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `supplier`";
+    class supplier {
 
         private String id;
         private String name;
@@ -50,7 +50,7 @@ public class Supplier extends javax.swing.JPanel {
         private String phone;
         private String address;
 
-        public customer(String id, String name, String company, String phone, String address) {
+        public supplier(String id, String name, String company, String phone, String address) {
             this.id = id;
             this.name = name;
             this.company = company;
@@ -80,31 +80,32 @@ public class Supplier extends javax.swing.JPanel {
 
     }
 
-    public ArrayList<customer> getCustomerList() {
-        ArrayList<customer> customerList = new ArrayList<customer>();
-        String sql = "SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `customer`";
+    public ArrayList<supplier> getCustomerList() {
+        ArrayList<supplier> supplierList = new ArrayList<supplier>();
+//        String sql = "SELECT CONCAT('C',sup_ID) AS sup_ID, sup_NAME, sup_COMPANY, sup_PHONE,sup_ADDRESS fROM `supplier`";
+        String sql = "SELECT sup_ID, sup_NAME, sup_COMPANY, sup_PHONE,sup_ADDRESS fROM `supplier`";
         Statement st;
         ResultSet rs;
         try {
             st = DataBase.getStatement();
             rs = st.executeQuery(sql);
-            customer cust;
+            supplier sup;
             while (rs.next()) {
-                cust = new customer(rs.getString("cust_id"),
-                        rs.getString("cust_name"),
-                        rs.getString("cust_company"),
-                        rs.getString("cust_phone"),
-                        rs.getString("cust_address"));
-                customerList.add(cust);
+                sup = new supplier(rs.getString("sup_id"),
+                        rs.getString("sup_name"),
+                        rs.getString("sup_company"),
+                        rs.getString("sup_phone"),
+                        rs.getString("sup_address"));
+                supplierList.add(sup);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return customerList;
+        return supplierList;
     }
 
     public void Show_In_JTable() {
-        ArrayList<customer> list = getCustomerList();
+        ArrayList<supplier> list = getCustomerList();
         Object[] col = new Object[5];
         DefaultTableModel model = (DefaultTableModel) tCust.getModel();
         for (int i = 0; i < list.size(); i++) {
@@ -241,7 +242,7 @@ public class Supplier extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 40, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -313,7 +314,7 @@ public class Supplier extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (button_ok == 0) {
             try {
-                String sql = "INSERT INTO CUSTOMER(CUST_NAME,CUST_COMPANY,CUST_PHONE,CUST_ADDRESS) VALUES('"
+                String sql = "INSERT INTO supplier(sup_NAME,sup_COMPANY,sup_PHONE,sup_ADDRESS) VALUES('"
                         + jTextField1.getText() + "'," + "'" + jTextField2.getText() + "'," + "'"
                         + jTextField3.getText() + "'," + "'" + jTextField4.getText() + "')";
                 System.out.println(sql);
@@ -327,9 +328,9 @@ public class Supplier extends javax.swing.JPanel {
         if (button_ok == 1) {
             try {
                 String s=(String) tCust.getValueAt(tCust.getSelectedRow(), 0);
-                String sql = "UPDATE CUSTOMER SET cust_name='" + jTextField1.getText() + "', cust_company ='" + jTextField2.getText()
-                        + "', cust_phone='" + jTextField3.getText() + "', cust_address = '" + jTextField4.getText()
-                        + "' WHERE cust_id='" + s.substring(1) + "'";
+                String sql = "UPDATE supplier SET sup_name='" + jTextField1.getText() + "', sup_company ='" + jTextField2.getText()
+                        + "', sup_phone='" + jTextField3.getText() + "', sup_address = '" + jTextField4.getText()
+                        + "' WHERE sup_id='" + s.substring(1) + "'";
                 System.out.println(sql);
                 DataBase.setExecuteUpdate(sql);
                 clearText();
@@ -343,7 +344,7 @@ public class Supplier extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 //refresh button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        sql="SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `customer`where cust_id";
+//        sql="SELECT CONCAT('C',CUST_ID) AS CUST_ID, CUST_NAME, CUST_COMPANY, CUST_PHONE, CUST_ADDRESS fROM `supplier`where sup_id";
         updateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 //edit button
@@ -370,7 +371,7 @@ public class Supplier extends javax.swing.JPanel {
             String s=(String) tCust.getValueAt(tCust.getSelectedRow(), 0);
             int check = JOptionPane.showConfirmDialog(this, "ARE YOU WANT TO DELETE ID = " + tCust.getValueAt(tCust.getSelectedRow(), 0));
             if (check == JOptionPane.YES_OPTION) {
-                String sql = "DELETE FROM CUSTOMER WHERE cust_id='" + s.substring(1) + "'";
+                String sql = "DELETE FROM supplier WHERE sup_id='" + s.substring(1) + "'";
                 DataBase.setExecuteUpdate(sql);
                 updateTable();
                 System.out.println(sql);

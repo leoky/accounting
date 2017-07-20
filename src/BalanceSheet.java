@@ -54,14 +54,14 @@ public class BalanceSheet extends javax.swing.JPanel {
                 while (rs.next()) {
                     double asset = rs.getDouble("SUM(DEBIT)-SUM(CREDIT)");
                     totalAsset += asset;
-                    model.addRow(new Object[]{a, asset});
+                    model.addRow(new Object[]{a, String.format("Rp.%,.2f", asset)});
                 }
             }
             Inventory in = new Inventory();
             int inventory = (int) in.getTotalFinal(date);
             totalAsset += inventory;
-            model.addRow(new Object[]{"inventory", inventory});
-            model.addRow(new Object[]{"TOTAL ASSET ", (int) totalAsset});
+            model.addRow(new Object[]{"inventory", String.format("Rp.%,d", inventory)});
+            model.addRow(new Object[]{"TOTAL ASSET ", String.format("Rp.%,.2f", totalAsset)});
             chartList.clear();
             totalAsset = 0;
         } catch (Exception e) {
@@ -90,10 +90,10 @@ public class BalanceSheet extends javax.swing.JPanel {
                     double lia = rs.getDouble("SUM(CREDIT)- SUM(DEBIT)");
                     totalLiaAndCap += lia;
                     totalLia += lia;
-                    model.addRow(new Object[]{a, (int) lia});
+                    model.addRow(new Object[]{a, String.format("Rp.%,.2f", lia)});
                 }
             }
-            model.addRow(new Object[]{"TOTAL LIABILITY  ", (int) totalLia});
+            model.addRow(new Object[]{"TOTAL LIABILITY  ", String.format("Rp.%,.2f", totalLia)});
             model.addRow(new Object[]{});
             chartList.clear();
             totalAsset = 0;
@@ -122,16 +122,16 @@ public class BalanceSheet extends javax.swing.JPanel {
                     double Cap = rs.getDouble("SUM(DEBIT)-SUM(CREDIT)");
                     totalLia += Cap;
                     totalLiaAndCap += Cap;
-                    model.addRow(new Object[]{a, Cap});
+                    model.addRow(new Object[]{a, String.format("Rp.%,.2f", Cap)});
                 }
             }
             ProfitLoss profitLoss = new ProfitLoss();
             int profit = (int) profitLoss.getProfitLoss(date);
             totalLiaAndCap += profit;
             totalCap += profit;
-            model.addRow(new Object[]{"CURRENT PERIOD", profit});
-            model.addRow(new Object[]{"TOTAL CAPITAL  ", totalCap});
-            model.addRow(new Object[]{"TOTAL LIABILITY AND CAP ", (int) totalLiaAndCap});
+            model.addRow(new Object[]{"CURRENT PERIOD", String.format("Rp.%,d",  profit)});
+            model.addRow(new Object[]{"TOTAL CAPITAL  ",  String.format("Rp.%,.2f", totalCap)});
+            model.addRow(new Object[]{"TOTAL LIABILITY AND CAP ",  String.format("Rp.%,.2f",  totalLiaAndCap)});
             chartList.clear();
             totalCap = 0;
         } catch (Exception e) {
@@ -217,14 +217,14 @@ public class BalanceSheet extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,11 +233,11 @@ public class BalanceSheet extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(14, 14, 14)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

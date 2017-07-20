@@ -29,9 +29,11 @@ public class ProfitLoss extends javax.swing.JPanel {
         setProfitLoss(date);
         return finalValue;
     }
+    DefaultTableModel model;
 
     public ProfitLoss() {
         initComponents();
+        model = (DefaultTableModel) jTable2.getModel();
     }
 
     /**
@@ -45,10 +47,10 @@ public class ProfitLoss extends javax.swing.JPanel {
 
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(248, 238, 160));
 
@@ -65,42 +67,30 @@ public class ProfitLoss extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel4.setText("NET PROFIT : ");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        jTable2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "CHART NAME", "PRICE", "TOTAL"
+                "NAME", "VALUE", "TOTAL"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setRowHeight(25);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(1);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(1);
-        }
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel4.setText("NET PROFIT : ");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jTable2.setRowHeight(25);
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,20 +100,15 @@ public class ProfitLoss extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(40, Short.MAX_VALUE))))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,17 +117,17 @@ public class ProfitLoss extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void setProfitLoss(String date) {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
 //        DefaultTableModel model1 = (DefaultTableModel) jTable2.getModel();
 //        DefaultTableModel model2 = (DefaultTableModel) jTable3.getModel();
         model.setRowCount(0);
@@ -165,12 +150,13 @@ public class ProfitLoss extends javax.swing.JPanel {
                 while (rs.next()) {
                     int sales = rs.getInt("sum(credit)-sum(debit)");
                     totalSales += sales;
-                    model.addRow(new Object[]{a, totalSales});
+                    model.addRow(new Object[]{a, String.format("Rp.%,d", totalSales)});
                     totalFinalSales += totalSales;
                     totalSales = 0;
                 }
             }
-            model.addRow(new Object[]{"SUM", "", totalFinalSales});
+            model.addRow(new Object[]{"SUM", "", String.format("Rp.%,d", totalFinalSales)});
+//             model.addRow(new Object[]{"SUM", "", totalFinalSales});
             model.addRow(new Object[]{});
             model.addRow(new Object[]{"COGS"});
             chartList.clear();
@@ -187,7 +173,7 @@ public class ProfitLoss extends javax.swing.JPanel {
                     System.out.println(a);
                     int cogs = rs.getInt("sum(debit)-sum(credit)");
                     totalCogs += cogs;
-                    model.addRow(new Object[]{a, totalCogs});
+                    model.addRow(new Object[]{a, String.format("Rp.%,d", totalCogs)});
                     totalFinalCogs += totalCogs;
                     totalCogs = 0;
                     System.out.println(totalFinalCogs);
@@ -195,10 +181,10 @@ public class ProfitLoss extends javax.swing.JPanel {
             }
             Inventory in = new Inventory();
             int aa = (int) in.getTotalFinal(date);
-            model.addRow(new Object[]{"ending inventory", aa});
+            model.addRow(new Object[]{"ending inventory", String.format("Rp.%,d", aa)});
             totalFinalCogs = (totalFinalCogs - aa);
             System.out.println(totalFinalCogs + in.getTotalFinal(date));
-            model.addRow(new Object[]{"SUM", "", totalFinalCogs});
+            model.addRow(new Object[]{"SUM", "", String.format("Rp.%,.2f", totalFinalCogs)});
             model.addRow(new Object[]{});
             model.addRow(new Object[]{"OPERASIONAL EXPENDICUTE"});
             chartList.clear();
@@ -215,18 +201,19 @@ public class ProfitLoss extends javax.swing.JPanel {
                 while (rs.next()) {
                     int expend = rs.getInt("sum(debit)-sum(credit)");
                     totalExpend += expend;
-                    model.addRow(new Object[]{a, "", totalExpend});
+                    model.addRow(new Object[]{a, "", String.format("Rp.%,d", totalExpend)});
                     totalFinalExpend += totalExpend;
                     totalExpend = 0;
                 }
             }
-            model.addRow(new Object[]{"SUM", totalFinalExpend});
+            model.addRow(new Object[]{"SUM", String.format("Rp.%,.2f", totalFinalExpend)});
             model.addRow(new Object[]{});
             chartList.clear();
             finalValue = totalFinalSales - totalFinalCogs - totalFinalExpend;
-            model.addRow(new Object[]{"", "TOTAL", finalValue});
+            model.addRow(new Object[]{"", "TOTAL", String.format("Rp.%,.2f", finalValue)});
             Double d = new Double(finalValue);
-            jLabel5.setText(Double.toString(d));
+//            jLabel5.setText(Double.toString(d));
+            jLabel5.setText(String.format("Rp.%,.2f", finalValue));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -243,6 +230,7 @@ public class ProfitLoss extends javax.swing.JPanel {
         date = jTextField1.getText();
         setProfitLoss(date);
         DataBase.date = date;
+        finalValue = 0;
     }//GEN-LAST:event_jTextField1ActionPerformed
 
 
@@ -250,8 +238,8 @@ public class ProfitLoss extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

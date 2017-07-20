@@ -138,11 +138,14 @@ public class TrialBallance extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setBackground(new java.awt.Color(248, 238, 160));
 
@@ -207,7 +210,7 @@ public class TrialBallance extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1222, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
@@ -220,7 +223,7 @@ public class TrialBallance extends javax.swing.JPanel {
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void setTrialBallance() {
@@ -237,8 +240,8 @@ public class TrialBallance extends javax.swing.JPanel {
             for (String a : chartList) {
                 rs = st.executeQuery("SELECT chart_name, sum(debit),sum(credit) fROM `jurnal` WHERE jurnal_date like '" + date + "-%' AND CHART_NAME ='" + a + "';");
                 while (rs.next()) {
-                    int debit = rs.getInt("sum(debit)");
-                    int credit = rs.getInt("sum(credit)");
+                    String debit = String.format("Rp.%,d", rs.getInt("sum(debit)"));
+                    String credit = String.format("Rp.%,d", rs.getInt("sum(credit)"));
                     model.addRow(new Object[]{a, 0, debit, credit, 0});
                 }
             }
@@ -262,8 +265,17 @@ public class TrialBallance extends javax.swing.JPanel {
         int debit = 0, credit = 0;
         int[] row = jTable1.getSelectedRows();
         for (int i : row) {
-            debit += (Integer) jTable1.getModel().getValueAt(i, 2);
-            credit += (Integer) jTable1.getModel().getValueAt(i, 3);
+//            debit += (Integer) jTable1.getModel().getValueAt(i, 2);
+//            credit += (Integer) jTable1.getModel().getValueAt(i, 3);
+            String a1 = (String) jTable1.getModel().getValueAt(i, 2);
+            String b1 = a1.substring(3);
+            String c1 = b1.replace(",", "");
+
+            String a2 = (String) jTable1.getModel().getValueAt(i, 3);
+            String b2 = a2.substring(3);
+            String c2 = b2.replace(",", "");
+            debit += Integer.parseInt(c1);
+            credit += Integer.parseInt(c2);
         }
         JOptionPane.showMessageDialog(this, " Debit: " + debit + " Credit = " + credit);
         debit = 0;
@@ -274,6 +286,7 @@ public class TrialBallance extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
