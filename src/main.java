@@ -30,7 +30,7 @@ public class main extends javax.swing.JFrame {
         dMenuJurnal.getContentPane().setBackground(new java.awt.Color(248, 238, 160));
         dEditorJurnal.getContentPane().setBackground(new java.awt.Color(248, 238, 160));
         jPanel4.setVisible(false);
-        add(detail, BorderLayout.PAGE_START);
+        add(new Detail(), BorderLayout.PAGE_START);
     }
 
     /**
@@ -90,9 +90,11 @@ public class main extends javax.swing.JFrame {
         dMenuJurnal.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dMenuJurnal.setForeground(new java.awt.Color(102, 255, 204));
         dMenuJurnal.setLocation(new java.awt.Point(400, 300));
-        dMenuJurnal.setMinimumSize(new java.awt.Dimension(400, 300));
+        dMenuJurnal.setMinimumSize(new java.awt.Dimension(470, 370));
         dMenuJurnal.setModal(true);
+        dMenuJurnal.setPreferredSize(new java.awt.Dimension(470, 370));
 
+        jButton13.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jButton13.setText("CREATE NEW JURNAL");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +102,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jButton14.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jButton14.setText("USE EXCISTING JURNAL");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +110,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jButton15.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jButton15.setText("CANCEL");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,13 +123,15 @@ public class main extends javax.swing.JFrame {
         dMenuJurnalLayout.setHorizontalGroup(
             dMenuJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dMenuJurnalLayout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addGroup(dMenuJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(dMenuJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dMenuJurnalLayout.createSequentialGroup()
-                        .addComponent(jButton15)
-                        .addGap(43, 43, 43))
-                    .addComponent(jButton13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(100, 100, 100)
+                        .addGroup(dMenuJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(dMenuJurnalLayout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(jButton15)))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         dMenuJurnalLayout.setVerticalGroup(
@@ -133,25 +139,30 @@ public class main extends javax.swing.JFrame {
             .addGroup(dMenuJurnalLayout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addComponent(jButton13)
-                .addGap(18, 18, 18)
-                .addComponent(jButton14)
                 .addGap(30, 30, 30)
+                .addComponent(jButton14)
+                .addGap(28, 28, 28)
                 .addComponent(jButton15)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         dEditorJurnal.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         dEditorJurnal.setBackground(new java.awt.Color(248, 238, 160));
-        dEditorJurnal.setLocation(new java.awt.Point(400, 300));
+        dEditorJurnal.setLocation(new java.awt.Point(470, 370));
         dEditorJurnal.setMinimumSize(new java.awt.Dimension(400, 300));
         dEditorJurnal.setModal(true);
+        dEditorJurnal.setPreferredSize(new java.awt.Dimension(470, 370));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel1.setText("CREATE NEW JURNAL");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel2.setText("YEAR");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel3.setText("MONTH");
 
+        jButton16.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jButton16.setText("CREATE");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,10 +170,20 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jButton17.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jButton17.setText("CANCEL");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton17ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
             }
         });
 
@@ -171,44 +192,45 @@ public class main extends javax.swing.JFrame {
         dEditorJurnalLayout.setHorizontalGroup(
             dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dEditorJurnalLayout.createSequentialGroup()
-                .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(70, 70, 70)
+                .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dEditorJurnalLayout.createSequentialGroup()
+                            .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1))
                     .addGroup(dEditorJurnalLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
                         .addComponent(jButton16)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton17))
-                    .addGroup(dEditorJurnalLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(28, 28, 28)
-                        .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                            .addComponent(jTextField1)))
-                    .addGroup(dEditorJurnalLayout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jLabel1)))
-                .addContainerGap(145, Short.MAX_VALUE))
+                        .addGap(124, 124, 124)))
+                .addGap(152, 152, 152))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dEditorJurnalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton17)
+                .addGap(131, 131, 131))
         );
         dEditorJurnalLayout.setVerticalGroup(
             dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dEditorJurnalLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(dEditorJurnalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton16)
-                    .addComponent(jButton17))
-                .addGap(97, 97, 97))
+                    .addComponent(jButton17)
+                    .addComponent(jButton16))
+                .addGap(26, 26, 26))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -537,10 +559,9 @@ public class main extends javax.swing.JFrame {
         invoice.setVisible(false);
     }
 
-    public void setIcon(String detail) {
-        this.detail.setJurnalDetail(detail);
-    }
-
+//    public void setIcon(String detail) {
+////        this.//////detail.setJurnalDetail(detail);
+//    }
     public void ChangeIcon() {
         if (menu == 0) {
             jLabel1.setText("CREATE NEW JURNAL");
@@ -557,7 +578,11 @@ public class main extends javax.swing.JFrame {
         add(product, BorderLayout.CENTER);
         product.setVisible(true);
 //        setIcon("", "PRODUCT");
-        detail.setIconDetail("PRODUCT");
+        Detail.setIconDetail("PRODUCT");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -565,14 +590,22 @@ public class main extends javax.swing.JFrame {
         add(customer, BorderLayout.CENTER);
         customer.setVisible(true);
 //        setIcon("", "CUSTOMER");
-        detail.setIconDetail("CUSTOMER");
+        Detail.setIconDetail("CUSTOMER");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         homeButton();
         jPanel2.setVisible(true);
 //        setIcon("", "");
-        detail.setIconDetail("");
+        Detail.setIconDetail("");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -580,27 +613,39 @@ public class main extends javax.swing.JFrame {
         add(supplier, BorderLayout.CENTER);
         supplier.setVisible(true);
 //        setIcon("", "SUPPLIER");
-        detail.setIconDetail("SUPPLIER");
+        Detail.setIconDetail("SUPPLIER");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        detail.setIconDetail("");
+        Detail.setIconDetail("");
 //        setIcon("", "");
         if (loadJurnal > 0) {
             homeButton();
             add(jurnal, BorderLayout.CENTER);
             jurnal.setVisible(true);
 //            setIcon("", "JURNAL");
-            detail.setIconDetail("JURNAL");
+            Detail.setIconDetail("JURNAL");
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //
         } else {
             homeButton();
             add(jPanel2, BorderLayout.CENTER);
             dMenuJurnal.setLocationRelativeTo(null);
             dMenuJurnal.setVisible(true);
 //            setIcon("", "");
-//            detail.setIconDetail("");
+//            Detail.setIconDetail("");
             loadJurnal++;
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -609,7 +654,11 @@ public class main extends javax.swing.JFrame {
         add(chart, BorderLayout.CENTER);
         chart.setVisible(true);
 //        setIcon("", "CHART");
-        detail.setIconDetail("CHART");
+        Detail.setIconDetail("CHART");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -618,7 +667,12 @@ public class main extends javax.swing.JFrame {
         jurnalview.setVisible(true);
         jurnalview.setTf();
 //        setIcon("", "VIEW JURNAL");
-        detail.setIconDetail("VIEW JURNAL");
+        Detail.setIconDetail("VIEW JURNAL");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
 //for jurnal dialog menu
@@ -666,10 +720,14 @@ public class main extends javax.swing.JFrame {
             System.out.println(DataBase.date);
             homeButton();
 //            setIcon("DATE : " + DataBase.jurnalDate, "JURNAL");
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //
             add(jurnal, BorderLayout.CENTER);
             jurnal.setVisible(true);
-            detail.setIconDetail("JURNAL");
-            detail.setJurnalDateDetail("DATE : " + DataBase.date);
+            Detail.setIconDetail("JURNAL");
+            Detail.setJurnalDateDetail("DATE : " + DataBase.date);
 
         }
         if (menu == 1) { // use existing juranl
@@ -683,10 +741,14 @@ public class main extends javax.swing.JFrame {
             System.out.println(DataBase.date);
             homeButton();
 //            setIcon("DATE : " + DataBase.jurnalDate, "JURNAL");
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //
             add(jurnal, BorderLayout.CENTER);
             jurnal.setVisible(true);
-            detail.setIconDetail("JURNAL");
-            detail.setJurnalDateDetail("DATE : " + DataBase.date);
+            Detail.setIconDetail("JURNAL");
+            Detail.setJurnalDateDetail("DATE : " + DataBase.date);
 
         }
     }//GEN-LAST:event_jButton16ActionPerformed
@@ -702,7 +764,7 @@ public class main extends javax.swing.JFrame {
         add(generalledger, BorderLayout.CENTER);
         generalledger.setVisible(true);
         generalledger.setTf();
-        detail.setIconDetail("GENERAL LEDGER");
+        Detail.setIconDetail("GENERAL LEDGER");
 //        setIcon("", "GENERAL LEDGER");
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -711,7 +773,11 @@ public class main extends javax.swing.JFrame {
         add(trialballance, BorderLayout.CENTER);
         trialballance.setVisible(true);
         trialballance.setTf();
-        detail.setIconDetail("TRIAL BALANCE");
+        Detail.setIconDetail("TRIAL BALANCE");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
 //        setIcon("", "TRIAL BALANCE");
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -720,7 +786,11 @@ public class main extends javax.swing.JFrame {
         add(inventory, BorderLayout.CENTER);
         inventory.setVisible(true);
         inventory.setTf();
-        detail.setIconDetail("INVENTORY");
+        Detail.setIconDetail("INVENTORY");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
 //        setIcon("", "INVENTORY");
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -730,7 +800,11 @@ public class main extends javax.swing.JFrame {
         profitLoss.setVisible(true);
         profitLoss.setTf();
 //        setIcon("", "PROFIT LOSS");
-        detail.setIconDetail("PROFIT LOSS");
+        Detail.setIconDetail("PROFIT LOSS");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -738,7 +812,11 @@ public class main extends javax.swing.JFrame {
         add(balanceSheet, BorderLayout.CENTER);
         balanceSheet.setVisible(true);
         balanceSheet.setTf();
-        detail.setIconDetail("BALANCE SHEET");
+        Detail.setIconDetail("BALANCE SHEET");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
 //        setIcon("", "BALANCE SHEET");
 
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -746,14 +824,14 @@ public class main extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         homeButton();
         dMenuJurnal.setVisible(true);
-        detail.setIconDetail("");
+        Detail.setIconDetail("");
 //        setIcon("", "");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         homeButton();
         dMenuJurnal.setVisible(true);
-        detail.setIconDetail("");
+        Detail.setIconDetail("");
 //        setIcon("", "");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -770,7 +848,10 @@ public class main extends javax.swing.JFrame {
                 loadJurnal = 0;
                 homeButton();
                 jPanel2.setVisible(true);
-                detail.setIconDetail("");
+                Detail.setIconDetail("");
+                loadJurnal = 0;
+                dEditorJurnal.setVisible(false);
+                dMenuJurnal.setVisible(false);
 //                setIcon("", "");
             }
         } catch (Exception e) {
@@ -783,9 +864,63 @@ public class main extends javax.swing.JFrame {
         add(invoice, BorderLayout.CENTER);
         invoice.setVisible(true);
         invoice.setTf();
-        detail.setIconDetail("INVOICE");
+        Detail.setIconDetail("INVOICE");
+        //icon detail
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
+        //
 //        setIcon("", "INVOICE");
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        if (menu == 0) { //create new jurnal
+            dEditorJurnal.setVisible(false);
+            DataBase.setExecuteUpdate("INSERT INTO SYSTEM(system_date, system_jurnal, system_sales, system_pur, system_pay) VALUES('" + jTextField1.getText()
+                    + "-" + jTextField2.getText() + "-1',1,1,1,1)");
+            System.out.println("INSERT INTO SYSTEM(system_date, system_jurnal, system_sales, system_pur,system_pay) VALUES('" + jTextField1.getText()
+                    + "-" + jTextField2.getText() + "-1',1,1,1,1)");
+
+            DataBase.date = jTextField1.getText() + "-" + jTextField2.getText();
+            DataBase.jurnalDate = jTextField1.getText() + "-" + jTextField2.getText();
+            DataBase.jurnalId = 1;
+            DataBase.salesId = 1;
+            DataBase.purId = 1;
+            DataBase.payId = 1;
+            loadJurnal++;
+            System.out.println(DataBase.date);
+            homeButton();
+//            setIcon("DATE : " + DataBase.jurnalDate, "JURNAL");
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //
+            add(jurnal, BorderLayout.CENTER);
+            jurnal.setVisible(true);
+            Detail.setIconDetail("JURNAL");
+            Detail.setJurnalDateDetail("DATE : " + DataBase.date);
+
+        }
+        if (menu == 1) { // use existing juranl
+            dEditorJurnal.setVisible(false);
+
+            DataBase.date = jTextField1.getText() + "-" + jTextField2.getText();
+            DataBase.jurnalDate = jTextField1.getText() + "-" + jTextField2.getText();
+            DataBase.setJurnalId();
+            loadJurnal++;
+
+            System.out.println(DataBase.date);
+            homeButton();
+//            setIcon("DATE : " + DataBase.jurnalDate, "JURNAL");
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //
+            add(jurnal, BorderLayout.CENTER);
+            jurnal.setVisible(true);
+            Detail.setIconDetail("JURNAL");
+            Detail.setJurnalDateDetail("DATE : " + DataBase.date);
+        }
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments

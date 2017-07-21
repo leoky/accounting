@@ -1,6 +1,8 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JLabel;
 
 /*
@@ -12,28 +14,69 @@ import javax.swing.JLabel;
  *
  * @author Leonardy
  */
-public class Detail extends javax.swing.JPanel{
-
+public class Detail extends javax.swing.JPanel {
+    
     static String detail;
+    static double cash = 0, bank = 0;
 
     /**
      * Creates new form Detail
      */
-    public void setIconDetail(String detail) {
+    public static void setIconDetail(String detail) {
         jLabel1.setText(detail);
     }
-
-    public void setJurnalDateDetail(String detail) {
+    
+    public static void setJurnalDateDetail(String detail) {
         jLabel2.setText(detail);
     }
-
-    public void setJurnalDetail(String detail) {
+    
+    public static void setJurnalDetail(String detail) {
         jLabel3.setText(detail);
     }
-
+    
     public Detail() {
         initComponents();
     }
+    static Statement st = DataBase.getStatement();
+    static ResultSet rs;
+    
+    public static void setCash(String date) {
+        try {
+            System.out.println("SELECT SUM(DEBIT)-SUM(CREDIT) FROM JURNAL WHERE JURNAL_DATE LIKE '"
+                    + date + "-%' AND CHART_name LIKE 'cash'");
+            rs = st.executeQuery("SELECT SUM(DEBIT)-SUM(CREDIT) FROM JURNAL WHERE JURNAL_DATE LIKE '"
+                    + date + "-%' AND CHART_name LIKE 'cash'");
+            
+            while (rs.next()) {
+                cash = rs.getDouble("SUM(DEBIT)-SUM(CREDIT)");
+            }
+            jLabel5.setText(String.format("Rp.%,.2f", cash));
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void setBank(String date) {
+        try {
+            System.out.println("SELECT SUM(DEBIT)-SUM(CREDIT) FROM JURNAL WHERE JURNAL_DATE LIKE '"
+                    + date + "-%' AND CHART_name LIKE 'bank'");
+            rs = st.executeQuery("SELECT SUM(DEBIT)-SUM(CREDIT) FROM JURNAL WHERE JURNAL_DATE LIKE '"
+                    + date + "-%' AND CHART_name LIKE 'bank'");
+            while (rs.next()) {
+                bank = rs.getDouble("SUM(DEBIT)-SUM(CREDIT)");
+            }
+            jLabel7.setText(String.format("Rp.%,.2f", bank));
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public static void getUpdateSystem() {
+//        setBank(DataBase.date);
+//        setCash(DataBase.date);
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +90,10 @@ public class Detail extends javax.swing.JPanel{
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(248, 238, 160));
         setPreferredSize(new java.awt.Dimension(1145, 40));
@@ -58,6 +105,16 @@ public class Detail extends javax.swing.JPanel{
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel4.setText("CASH");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel6.setText("BANK");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,26 +122,41 @@ public class Detail extends javax.swing.JPanel{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(721, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                .addGap(100, 100, 100)
+                .addComponent(jLabel4)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel5)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel6)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel7)
+                .addContainerGap(409, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private static javax.swing.JLabel jLabel1;
+    private static javax.swing.JLabel jLabel2;
+    private static javax.swing.JLabel jLabel3;
+    private static javax.swing.JLabel jLabel4;
+    private static javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private static javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
-
 
 }

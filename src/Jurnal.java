@@ -88,6 +88,7 @@ public class Jurnal extends javax.swing.JPanel {
         cPayment.addItem("cash");
         cPayment.addItem("credit");
         cPayment.addItem("giro");
+        cPayment.addItem("bank");
         cPayment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -99,7 +100,7 @@ public class Jurnal extends javax.swing.JPanel {
                     if (DataBase.jurnalShow == 2) {
                         tPur2.setValueAt(cPayment.getSelectedItem(), tPur2.getSelectedRow(), 1);
                     }
-                    if (DataBase.jurnalShow == 3) {
+                    if (DataBase.jurnalShow == 4) {
                         tExpend2.setValueAt(cPayment.getSelectedItem(), tExpend2.getSelectedRow(), 1);
                     }
                 } catch (Exception ee) {
@@ -234,16 +235,16 @@ public class Jurnal extends javax.swing.JPanel {
         jButton16 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        tfPrivetDate = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        cPrivet = new javax.swing.JComboBox<>();
         jButton9 = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
+        tfPrivetPrice = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        taPrivetDesc = new javax.swing.JTextArea();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -665,6 +666,11 @@ public class Jurnal extends javax.swing.JPanel {
         jTabbedPane8.addTab("PURCHASING", jPanel2);
 
         jPanel4.setBackground(new java.awt.Color(248, 238, 160));
+        jPanel4.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel4ComponentShown(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel20.setText("Date");
@@ -675,26 +681,32 @@ public class Jurnal extends javax.swing.JPanel {
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel22.setText("Payment");
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cPrivet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cash", "bank", "credit", "giro" }));
+        cPrivet.setName(""); // NOI18N
 
         jButton9.setText("Submit");
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel24.setText("Price");
 
-        jTextField16.addActionListener(new java.awt.event.ActionListener() {
+        tfPrivetPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField16ActionPerformed(evt);
+                tfPrivetPriceActionPerformed(evt);
             }
         });
 
         jButton10.setText("REFRESH");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane8.setViewportView(jTextArea3);
+        taPrivetDesc.setColumns(20);
+        taPrivetDesc.setRows(5);
+        jScrollPane8.setViewportView(taPrivetDesc);
 
         jButton20.setText("ADD");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
 
         jButton21.setText("CANCEL");
 
@@ -715,16 +727,16 @@ public class Jurnal extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfPrivetDate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(72, 72, 72)
                                 .addComponent(jButton10))
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                            .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cPrivet, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField16))))
+                            .addComponent(tfPrivetPrice))))
                 .addContainerGap(807, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -737,7 +749,7 @@ public class Jurnal extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfPrivetDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton10, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -749,11 +761,11 @@ public class Jurnal extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cPrivet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfPrivetPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -992,9 +1004,9 @@ public class Jurnal extends javax.swing.JPanel {
         add(jTabbedPane8, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
+    private void tfPrivetPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrivetPriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField16ActionPerformed
+    }//GEN-LAST:event_tfPrivetPriceActionPerformed
 
 //add product sales button
     private void bAddProdcutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddProdcutActionPerformed
@@ -1143,6 +1155,38 @@ public class Jurnal extends javax.swing.JPanel {
                                 }
                             }
                         }
+                        if (tsales2.getModel().getValueAt(i, 1).equals("bank")) {
+                            if (pay != 0) {
+                                if (tsales2.getModel().getValueAt(i, j) != null) {
+                                    totalpay = pay * (Integer) tsales2.getModel().getValueAt(i, j) / 100;
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfDate.getText()
+                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
+                                    System.out.println(sql);
+                                    DataBase.setExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
+                                            + " VALUES ('Y" + DataBase.payId + "','BANK','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + tsales2.getModel().getValueAt(i, j) + "," + totalpay + ")");
+                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
+                                            + " VALUES ('Y" + DataBase.payId + "','bank','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + tsales2.getModel().getValueAt(i, j) + "," + totalpay + ")");
+
+                                }
+                                if (tsales2.getModel().getValueAt(i, j) == null) {
+                                    totalpay = pay;
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfDate.getText()
+                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
+                                    System.out.println(sql);
+                                    DataBase.setExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
+                                            + " VALUES ('Y" + DataBase.payId + "','Bank','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + 0 + "," + totalpay + ")");
+                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
+                                            + " VALUES ('Y" + DataBase.payId + "','Bank','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + 0 + "," + totalpay + ")");
+
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1159,17 +1203,24 @@ public class Jurnal extends javax.swing.JPanel {
             System.out.println("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
                     + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
             jTextArea1.setText("");
+
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //
+
+            //clear text
+            tfDate.setText("");
+            DefaultTableModel model = (DefaultTableModel) tsales1.getModel();
+            model.setRowCount(0);
+            model.addRow(new Object[]{});
+            DefaultTableModel model2 = (DefaultTableModel) tsales2.getModel();
+            model2.setRowCount(0);
+            model2.addRow(new Object[]{});
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
-        //clear text
-        tfDate.setText("");
-        DefaultTableModel model = (DefaultTableModel) tsales1.getModel();
-        model.setRowCount(0);
-        model.addRow(new Object[]{});
-        DefaultTableModel model2 = (DefaultTableModel) tsales2.getModel();
-        model2.setRowCount(0);
-        model2.addRow(new Object[]{});
+
     }//GEN-LAST:event_bSubmitActionPerformed
 //REMOVE sales PRODUCT BUTTON
     private void bRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRemoveProductActionPerformed
@@ -1329,6 +1380,36 @@ public class Jurnal extends javax.swing.JPanel {
                                 }
                             }
                         }
+                        if (tPur2.getModel().getValueAt(i, 1) == "bank") {
+                            if (pay != 0) {
+                                if (tPur2.getModel().getValueAt(i, j) != null) {
+                                    totalpay = pay * (Integer) tPur2.getModel().getValueAt(i, j) / 100;
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfPurDate.getText()
+                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')";
+                                    System.out.println(sql);
+                                    DataBase.setExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
+                                            + " VALUES ('Y" + DataBase.payId + "','BANK','" + DataBase.jurnalDate + "-" + tfPurDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + tPur2.getModel().getValueAt(i, j) + "," + totalpay + ")");
+                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
+                                            + " VALUES ('Y" + DataBase.payId + "','BANK','" + DataBase.jurnalDate + "-" + tfPurDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + tPur2.getModel().getValueAt(i, j) + "," + totalpay + ")");
+                                }
+                                if (tPur2.getModel().getValueAt(i, j) == null) {
+                                    totalpay = pay;
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfPurDate.getText()
+                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')";
+                                    System.out.println(sql);
+                                    DataBase.setExecuteUpdate(sql);
+                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
+                                            + " VALUES ('Y" + DataBase.payId + "','BANK','" + DataBase.jurnalDate + "-" + tfPurDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + 0 + "," + totalpay + ")");
+                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
+                                            + " VALUES ('Y" + DataBase.payId + "','BANK','" + DataBase.jurnalDate + "-" + tfPurDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + 0 + "," + totalpay + ")");
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1338,7 +1419,19 @@ public class Jurnal extends javax.swing.JPanel {
             DataBase.jurnalId++;
             DataBase.purId++;
             DataBase.payId++;
-
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //
+            //clear text
+            tfPurDate.setText("");
+            DefaultTableModel model = (DefaultTableModel) tPur1.getModel();
+            model.setRowCount(0);
+            model.addRow(new Object[]{});
+            DefaultTableModel model2 = (DefaultTableModel) tPur2.getModel();
+            model2.setRowCount(0);
+            model2.addRow(new Object[]{});
+            jTextArea2.setText("");
             DataBase.setExecuteUpdate("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
                     + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
             System.out.println("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
@@ -1346,15 +1439,7 @@ public class Jurnal extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
-        //clear text
-        tfPurDate.setText("");
-        DefaultTableModel model = (DefaultTableModel) tPur1.getModel();
-        model.setRowCount(0);
-        model.addRow(new Object[]{});
-        DefaultTableModel model2 = (DefaultTableModel) tPur2.getModel();
-        model2.setRowCount(0);
-        model2.addRow(new Object[]{});
-        jTextArea2.setText("");
+
     }//GEN-LAST:event_jButton6ActionPerformed
 //purchasing add product button
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1386,18 +1471,14 @@ public class Jurnal extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void salesComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_salesComponentShown
-//        Detail d = new Detail();
         DataBase.jurnalShow = 1;
         System.out.println("jurnal show " + DataBase.jurnalShow);
-//        d.setJurnalDateDetail("(SALES)");
-//        m.setIcon("SALES");
+//        Detail.setJurnalDetail("(SALES)");
     }//GEN-LAST:event_salesComponentShown
 
     private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
-        Detail d = new Detail();
-//        detail1.setJurnalDetail("(PURCHASE)");
+        Detail.setJurnalDetail("(PURCHASING)");
         DataBase.jurnalShow = 2;
-        d.setJurnalDateDetail("(SALES)");
         System.out.println("jurnal show " + DataBase.jurnalShow);
 
     }//GEN-LAST:event_jPanel2ComponentShown
@@ -1413,6 +1494,7 @@ public class Jurnal extends javax.swing.JPanel {
     private void jPanel3ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentShown
         DataBase.jurnalShow = 3;
         System.out.println("jurnal show " + DataBase.jurnalShow);
+        Detail.setJurnalDetail(" (OPERASIONAL)");
     }//GEN-LAST:event_jPanel3ComponentShown
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
@@ -1423,12 +1505,58 @@ public class Jurnal extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton18ActionPerformed
 
+    private void jPanel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentShown
+        DataBase.jurnalShow = 4;
+        System.out.println("jurnal show " + DataBase.jurnalShow);
+        Detail.setJurnalDetail(" (PRIVET) ");
+    }//GEN-LAST:event_jPanel4ComponentShown
+// privet 
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        try {
+            if (tfPrivetPrice.getText() != null) {
+                DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfPrivetDate.getText()
+                        + "','3030','privet'," + tfPrivetPrice.getText() + ",0,'" + taPrivetDesc.getText() + "')");
+            }
+            if (cPrivet.getSelectedItem() == "cash") {
+                DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfPrivetDate.getText()
+                        + "','1010','cash',0," + tfPrivetPrice.getText() + ",'" + taPrivetDesc.getText() + "')");
+            }
+            if (cPrivet.getSelectedItem() == "credit") {
+                DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfPrivetDate.getText()
+                        + "','2020','account payable',0," + tfPrivetPrice.getText() + ",'" + taPrivetDesc.getText() + "')");
+            }
+            if (cPrivet.getSelectedItem() == "bank") {
+                DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfPrivetDate.getText()
+                        + "','1020','bank',0," + tfPrivetPrice.getText() + ",'" + taPrivetDesc.getText() + "')");
+            }
+            //id
+            DataBase.jurnalId++;
+
+            DataBase.setExecuteUpdate("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
+                    + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
+            System.out.println("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
+                    + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //           
+            //clear 
+            tfPrivetDate.setText("");
+            tfPrivetPrice.setText("");
+            taPrivetDesc.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton20ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAddProdcut;
     private javax.swing.JButton bRemoveProduct;
     private javax.swing.JButton bSubmit;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cPrivet;
     private javax.swing.JComboBox<String> cPurFrom;
     private javax.swing.JComboBox<String> cSalesTo;
     private javax.swing.JButton jButton1;
@@ -1455,7 +1583,6 @@ public class Jurnal extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
@@ -1489,18 +1616,18 @@ public class Jurnal extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane8;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel sales;
     private javax.swing.JTable tExped1;
     private javax.swing.JTable tExpend2;
     private javax.swing.JTable tPur1;
     private javax.swing.JTable tPur2;
+    private javax.swing.JTextArea taPrivetDesc;
     private javax.swing.JTextField tfDate;
+    private javax.swing.JTextField tfPrivetDate;
+    private javax.swing.JTextField tfPrivetPrice;
     private javax.swing.JTextField tfPurDate;
     private javax.swing.JTable tsales1;
     private javax.swing.JTable tsales2;

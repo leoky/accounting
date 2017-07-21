@@ -17,6 +17,9 @@ import javax.swing.table.DefaultTableModel;
 public class Inventory extends javax.swing.JPanel {
 
     float totalFinal = 0;
+    ArrayList<String> chartList = new ArrayList<>();
+    Statement st;
+    ResultSet rs;
 
     /**
      * Creates new form Inventory
@@ -34,103 +37,102 @@ public class Inventory extends javax.swing.JPanel {
         return totalFinal;
     }
 
-    class price {
-
-        private String date;
-        private String jurnal;
-        private String product;
-        private int qty;
-        private int price;
-        private int value;
-
-        public price(String date, String jurnal, String product, int qty, int price, int value) {
-            this.date = date;
-            this.jurnal = jurnal;
-            this.product = product;
-            this.qty = qty;
-            this.price = price;
-            this.value = value;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-
-        public String getJurnal() {
-            return jurnal;
-        }
-
-        public void setJurnal(String jurnal) {
-            this.jurnal = jurnal;
-        }
-
-        public String getProduct() {
-            return product;
-        }
-
-        public void setProduct(String product) {
-            this.product = product;
-        }
-
-        public int getQty() {
-            return qty;
-        }
-
-        public void setQty(int qty) {
-            this.qty = qty;
-        }
-
-        public int getPrice() {
-            return price;
-        }
-
-        public void setPrice(int price) {
-            this.price = price;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-    }
-
-    public ArrayList<price> getList() {
-
-        ArrayList<price> list = new ArrayList<>();
-        Statement st;
-        ResultSet rs;
-        try {
-            st = DataBase.getStatement();
-
-            rs = st.executeQuery("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from inventory where jurnal_date like '"
-                    + date + "-%' and type like 'purchase';");
-            System.out.println("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from inventory where jurnal_date like '"
-                    + date + "-%' and type like 'purchase';");
-
-            price abc; //abc defaut  
-            while (rs.next()) {
-                abc = new price(rs.getString("Jurnal_date"),
-                        rs.getString("Jurnal_id"),
-                        rs.getString("Product_name"),
-                        rs.getInt("p_qty"),
-                        rs.getInt("p_price"),
-                        rs.getInt("p_value"));
-                list.add(abc);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
+//    class price {
+//
+//        private String date;
+//        private String jurnal;
+//        private String product;
+//        private int qty;
+//        private int price;
+//        private int value;
+//
+//        public price(String date, String jurnal, String product, int qty, int price, int value) {
+//            this.date = date;
+//            this.jurnal = jurnal;
+//            this.product = product;
+//            this.qty = qty;
+//            this.price = price;
+//            this.value = value;
+//        }
+//
+//        public String getDate() {
+//            return date;
+//        }
+//
+//        public void setDate(String date) {
+//            this.date = date;
+//        }
+//
+//        public String getJurnal() {
+//            return jurnal;
+//        }
+//
+//        public void setJurnal(String jurnal) {
+//            this.jurnal = jurnal;
+//        }
+//
+//        public String getProduct() {
+//            return product;
+//        }
+//
+//        public void setProduct(String product) {
+//            this.product = product;
+//        }
+//
+//        public int getQty() {
+//            return qty;
+//        }
+//
+//        public void setQty(int qty) {
+//            this.qty = qty;
+//        }
+//
+//        public int getPrice() {
+//            return price;
+//        }
+//
+//        public void setPrice(int price) {
+//            this.price = price;
+//        }
+//
+//        public int getValue() {
+//            return value;
+//        }
+//
+//        public void setValue(int value) {
+//            this.value = value;
+//        }
+//
+//    }
+//
+//    public ArrayList<price> getList() {
+//
+//        ArrayList<price> list = new ArrayList<>();
+//        Statement st;
+//        ResultSet rs;
+//        try {
+//            st = DataBase.getStatement();
+//
+//            rs = st.executeQuery("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from inventory where jurnal_date like '"
+//                    + date + "-%' and type like 'purchase';");
+//            System.out.println("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from inventory where jurnal_date like '"
+//                    + date + "-%' and type like 'purchase';");
+//
+//            price abc; //abc defaut  
+//            while (rs.next()) {
+//                abc = new price(rs.getString("Jurnal_date"),
+//                        rs.getString("Jurnal_id"),
+//                        rs.getString("Product_name"),
+//                        rs.getInt("p_qty"),
+//                        rs.getInt("p_price"),
+//                        rs.getInt("p_value"));
+//                list.add(abc);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return list;
+//    }
     public void setInventory(String date) {
 
         this.date = date;
@@ -140,21 +142,20 @@ public class Inventory extends javax.swing.JPanel {
         float avg = 0, total = 0;
         Statement st = DataBase.getStatement();
         ResultSet rs;
-        ArrayList<String> chartList = new ArrayList<>();
+
         try {
             rs = st.executeQuery("SELECT DISTINCT PRODUCT_NAME FROM inventory WHERE JURNAL_DATE LIKE '" + date + "-%';");
             System.out.println("SELECT DISTINCT PRODUCT_NAME FROM inventory WHERE JURNAL_DATE LIKE '" + date + "-%';");
             while (rs.next()) {
                 chartList.add(rs.getString("product_name"));
             }
+            int a = 1;
             for (String i : chartList) {
                 System.out.println("select product_name, sum(qty), sum(value) from inventory where jurnal_date like '" + date + "-%' and"
                         + " product_name like '" + i + "';");
                 rs = st.executeQuery("select product_name, sum(p_qty), sum(p_value),sum(s_qty), sum(s_value) from inventory where jurnal_date like '" + date + "-%' and"
                         + " product_name like '" + i + "';");
-
                 while (rs.next()) {
-                    int a = 1;
                     in = rs.getInt("sum(p_qty)");
                     price = rs.getInt("sum(p_value)");
                     out = rs.getInt("sum(s_qty)");
@@ -167,34 +168,33 @@ public class Inventory extends javax.swing.JPanel {
                     a++;
                 }
             }
+            a = 0;
             model.addRow(new Object[]{null, null, null, null, null, null, "sum", String.format("Rp.%,.2f", totalFinal)});
-
+            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void Show_In_JTable() {
-        ArrayList<price> list = getList();
-        Object[] col = new Object[6];
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        for (int i = 0; i < list.size(); i++) {
-            col[0] = list.get(i).getDate();
-            col[1] = list.get(i).getJurnal();
-            col[2] = list.get(i).getProduct();
-            col[3] = list.get(i).getQty();
-            col[4] = String.format("Rp.%,2d", list.get(i).getPrice());
-            col[5] = String.format("Rp.%,2d", list.get(i).getValue());
-            model.addRow(col);
-        }
-    }
-
-    public void updateTable() {
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        model.setRowCount(0);
-        Show_In_JTable();
-    }
-
+//    public void Show_In_JTable() {
+//        ArrayList<price> list = getList();
+//        Object[] col = new Object[6];
+//        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+//        for (int i = 0; i < list.size(); i++) {
+//            col[0] = list.get(i).getDate();
+//            col[1] = list.get(i).getJurnal();
+//            col[2] = list.get(i).getProduct();
+//            col[3] = list.get(i).getQty();
+//            col[4] = String.format("Rp.%,2d", list.get(i).getPrice());
+//            col[5] = String.format("Rp.%,2d", list.get(i).getValue());
+//            model.addRow(col);
+//        }
+//    }
+//    public void updateTable() {
+//        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+//        model.setRowCount(0);
+//        Show_In_JTable();
+//    }
     public void setChart() {
         try {
             jComboBox1.removeAllItems();
@@ -332,7 +332,7 @@ public class Inventory extends javax.swing.JPanel {
 String date;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         date = jTextField1.getText();
-        updateTable();
+//        updateTable();
         try {
             System.out.println(date);
             setChart();
@@ -356,8 +356,30 @@ String date;
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         if (date != null) {
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
             System.out.println(date);
-            setChart();
+            model.setRowCount(0);
+            try {
+//                for (String a : chartList) {
+                st = DataBase.getStatement();
+                System.out.println("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from inventory where jurnal_date like '"
+                        + date + "-%' AND product_name like '" + jComboBox1.getSelectedItem() + "' AND TYPE LIKE 'PURCHASE'");
+                rs = st.executeQuery("SELECT Jurnal_date, Jurnal_id, Product_name, p_qty, p_price,p_value from inventory where jurnal_date like '"
+                        + date + "-%' AND product_name like '" + jComboBox1.getSelectedItem() + "' AND TYPE LIKE 'PURCHASE'");
+                while (rs.next()) {
+                    model.addRow(new Object[]{
+                        rs.getString("JURNAL_DATE"),
+                        rs.getString("Jurnal_id"),
+                        rs.getString("Product_name"),
+                        rs.getString("p_qty"),
+                        String.format("Rp.%,.2f", rs.getDouble("p_price")),
+                        String.format("Rp.%,.2f", rs.getDouble("p_value"))
+                    });
+//                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Please Enter Date First");
         }
