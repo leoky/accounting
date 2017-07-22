@@ -18,14 +18,16 @@ public class Inventory extends javax.swing.JPanel {
 
     float totalFinal = 0;
     ArrayList<String> chartList = new ArrayList<>();
-    Statement st;
+    Statement st = DataBase.getStatement();
     ResultSet rs;
+    DefaultTableModel model;
 
     /**
      * Creates new form Inventory
      */
     public Inventory() {
         initComponents();
+        model = (DefaultTableModel) tInventory.getModel();
     }
 
     public void setTf() {
@@ -134,26 +136,21 @@ public class Inventory extends javax.swing.JPanel {
 //        return list;
 //    }
     public void setInventory(String date) {
-
-        this.date = date;
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
+        int a = 1;
+//        this.date = date;
+//        model.setRowCount(0);
         int in = 0, price = 0, out = 0;
         float avg = 0, total = 0;
-        Statement st = DataBase.getStatement();
-        ResultSet rs;
-
         try {
             rs = st.executeQuery("SELECT DISTINCT PRODUCT_NAME FROM inventory WHERE JURNAL_DATE LIKE '" + date + "-%';");
             System.out.println("SELECT DISTINCT PRODUCT_NAME FROM inventory WHERE JURNAL_DATE LIKE '" + date + "-%';");
             while (rs.next()) {
                 chartList.add(rs.getString("product_name"));
             }
-            int a = 1;
             for (String i : chartList) {
-                System.out.println("select product_name, sum(qty), sum(value) from inventory where jurnal_date like '" + date + "-%' and"
+                System.out.println("select distinct product_name, sum(qty), sum(value) from inventory where jurnal_date like '" + date + "-%' and"
                         + " product_name like '" + i + "';");
-                rs = st.executeQuery("select product_name, sum(p_qty), sum(p_value),sum(s_qty), sum(s_value) from inventory where jurnal_date like '" + date + "-%' and"
+                rs = st.executeQuery("select distinct product_name, sum(p_qty), sum(p_value),sum(s_qty), sum(s_value) from inventory where jurnal_date like '" + date + "-%' and"
                         + " product_name like '" + i + "';");
                 while (rs.next()) {
                     in = rs.getInt("sum(p_qty)");
@@ -171,6 +168,7 @@ public class Inventory extends javax.swing.JPanel {
             a = 0;
             model.addRow(new Object[]{null, null, null, null, null, null, "sum", String.format("Rp.%,.2f", totalFinal)});
             rs.close();
+            chartList.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -221,7 +219,7 @@ public class Inventory extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tInventory = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -241,10 +239,10 @@ public class Inventory extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tInventory.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        tInventory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "NO", "PRODUCT_NAME", "PRICE", "OPEN", "IN", "OUT", "ENDING", "VALUE"
@@ -265,8 +263,8 @@ public class Inventory extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setRowHeight(25);
-        jScrollPane1.setViewportView(jTable1);
+        tInventory.setRowHeight(25);
+        jScrollPane1.setViewportView(tInventory);
 
         jTable2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -334,6 +332,7 @@ String date;
         date = jTextField1.getText();
 //        updateTable();
         try {
+            model.setRowCount(0);
             System.out.println(date);
             setChart();
             setInventory(date);
@@ -377,6 +376,7 @@ String date;
                     });
 //                    }
                 }
+                rs.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -391,8 +391,8 @@ String date;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tInventory;
     // End of variables declaration//GEN-END:variables
 }

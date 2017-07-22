@@ -92,7 +92,6 @@ public class main extends javax.swing.JFrame {
         dMenuJurnal.setLocation(new java.awt.Point(400, 300));
         dMenuJurnal.setMinimumSize(new java.awt.Dimension(470, 370));
         dMenuJurnal.setModal(true);
-        dMenuJurnal.setPreferredSize(new java.awt.Dimension(470, 370));
 
         jButton13.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jButton13.setText("CREATE NEW JURNAL");
@@ -151,7 +150,6 @@ public class main extends javax.swing.JFrame {
         dEditorJurnal.setLocation(new java.awt.Point(470, 370));
         dEditorJurnal.setMinimumSize(new java.awt.Dimension(400, 300));
         dEditorJurnal.setModal(true);
-        dEditorJurnal.setPreferredSize(new java.awt.Dimension(470, 370));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel1.setText("CREATE NEW JURNAL");
@@ -765,6 +763,8 @@ public class main extends javax.swing.JFrame {
         generalledger.setVisible(true);
         generalledger.setTf();
         Detail.setIconDetail("GENERAL LEDGER");
+        Detail.setCash(DataBase.date);
+        Detail.setBank(DataBase.date);
 //        setIcon("", "GENERAL LEDGER");
     }//GEN-LAST:event_jButton7ActionPerformed
 

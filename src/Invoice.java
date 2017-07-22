@@ -63,30 +63,41 @@ public class Invoice extends javax.swing.JPanel {
         double totalValue = 0;
         try {
             System.out.println("SELECT distinct jurnal_date ,jurnal_id , inventory_id , payment_id , product_name , s_qty, s_price , s_value, p_qty, p_price "
-                    + ", p_value ,type, people,discount, tax, price , payment_percent, payment_value, payment_type "
-                    + "from invoice "
-                    + "natural join inventory "
-                    + "natural join payment "
-                    + "natural join jurnal "
-                    + "where jurnal_date like '" + searchdate + "' and jurnal_id like '" + jurnalId + "'");
-            rs = st.executeQuery("SELECT distinct jurnal_date ,jurnal_id , inventory_id , payment_id , product_name , s_qty, s_price , s_value, p_qty, p_price "
-                    + ", p_value ,type, people,discount, tax, price , payment_percent, payment_value, payment_type "
+                    + ", p_value ,type, people,discount, tax, price , payment_percent, payment_value, payment_type,payment_date "
                     + "from invoice "
                     + "natural join inventory "
                     + "natural join payment "
                     + "natural join jurnal "
                     + "where jurnal_date like '" + searchdate + "' and jurnal_id like '" + jurnalId + "'");
             model.setRowCount(0);
+            rs = st.executeQuery("SELECT distinct jurnal_date ,jurnal_id , inventory_id , payment_id , product_name , s_qty, s_price , s_value, p_qty, p_price "
+                    + ", p_value ,type, people,discount, tax, price , payment_percent, payment_value, payment_type,payment_date "
+                    + "from invoice "
+                    + "natural join inventory "
+                    + "natural join payment "
+                    + "natural join jurnal "
+                    + "where jurnal_date like '" + searchdate + "' and jurnal_id like '" + jurnalId + "'");
+
             String pay = "";
             while (rs.next()) {
                 String type = rs.getString("type");
                 if (type.equals("purchase")) {
+                    if (rs.getString("payment_date") != null) {
+                        System.out.println("oayefsaf " + rs.getString("payment_date"));
+                        jLabel15.setText("DUE DATE");
+                        jLabel16.setText(rs.getString("payment_date"));
+                    }
+                    if (rs.getString("payment_date") == null) {
+                        jLabel15.setText("");
+                        jLabel16.setText("");
+                    }
                     jLabel6.setText(rs.getString("jurnal_date"));
                     jLabel7.setText(rs.getString("jurnal_id"));
                     jLabel3.setText("SUPPLIER");
                     jLabel8.setText(rs.getString("people"));
                     jLabel9.setText(rs.getString("inventory_id"));
                     jLabel10.setText(rs.getString("payment_id"));
+
                     double value = rs.getDouble("p_value");
                     totalValue += value;
                     pay += rs.getString("payment_type") + " " + rs.getString("payment_percent") + "% ,";
@@ -103,6 +114,15 @@ public class Invoice extends javax.swing.JPanel {
                     jLabel14.setText(pay.substring(0, pay.length() - 1));
                 }
                 if (type.equals("sales")) {
+                    if (rs.getString("payment_date") != null) {
+                        System.out.println("oayefsaf " + rs.getString("payment_date"));
+                        jLabel15.setText("DUE DATE");
+                        jLabel16.setText(rs.getString("payment_date"));
+                    }
+                    if (rs.getString("payment_date") == null) {
+                        jLabel15.setText("");
+                        jLabel16.setText("");
+                    }
                     jLabel6.setText(rs.getString("jurnal_date"));
                     jLabel7.setText(rs.getString("jurnal_id"));
                     jLabel3.setText("COSTOMER");
@@ -110,7 +130,6 @@ public class Invoice extends javax.swing.JPanel {
                     jLabel9.setText(rs.getString("inventory_id"));
                     jLabel10.setText(rs.getString("payment_id"));
                     double value = rs.getDouble("s_value");
-                    totalValue += value;
                     pay += rs.getString("payment_type") + " " + rs.getString("payment_percent") + "% ,";
                     model.addRow(new Object[]{
                         rs.getString("product_name"),
@@ -159,6 +178,8 @@ public class Invoice extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -228,6 +249,10 @@ public class Invoice extends javax.swing.JPanel {
         jTextArea1.setRows(5);
         jScrollPane3.setViewportView(jTextArea1);
 
+        jLabel15.setText("DUE DATE");
+
+        jLabel16.setText("jLabel16");
+
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
@@ -248,11 +273,13 @@ public class Invoice extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel15))
                                 .addGap(41, 41, 41)
                                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
-                                    .addComponent(jLabel10))
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel16))
                                 .addGap(238, 238, 238))
                             .addGroup(jDialog1Layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
@@ -300,7 +327,11 @@ public class Invoice extends javax.swing.JPanel {
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel8))
-                .addGap(35, 35, 35)
+                .addGap(1, 1, 1)
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel16))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -469,6 +500,8 @@ public class Invoice extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
