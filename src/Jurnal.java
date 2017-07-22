@@ -1340,38 +1340,7 @@ public class Jurnal extends javax.swing.JPanel {
                                 }
                             }
                         }
-                        if (tsales2.getModel().getValueAt(i, 1).equals("credit")) {
-                            if (pay != 0) {
-                                if (tsales2.getModel().getValueAt(i, j) != null) {
-                                    totalpay = pay * (Integer) tsales2.getModel().getValueAt(i, j) / 100;
-                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfDate.getText()
-                                            + "','1030','account receivable'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
-                                    System.out.println(sql);
-                                    DataBase.setExecuteUpdate(sql);
-                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
-                                            + " VALUES ('Y" + DataBase.payId + "','CREDIT','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
-                                            + "'," + tsales2.getModel().getValueAt(i, j) + "," + totalpay + ")");
-                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
-                                            + " VALUES ('Y" + DataBase.payId + "','CREDIT','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
-                                            + "'," + tsales2.getModel().getValueAt(i, j) + "," + totalpay + ")");
-
-                                }
-                                if (tsales2.getModel().getValueAt(i, j) == null) {
-                                    totalpay = pay;
-                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfDate.getText()
-                                            + "','1030','account receivable'," + totalpay + ",0,'" + jTextArea1.getText() + "')";
-                                    System.out.println(sql);
-                                    DataBase.setExecuteUpdate(sql);
-                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
-                                            + " VALUES ('Y" + DataBase.payId + "','CREDIT','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
-                                            + "'," + 0 + "," + totalpay + ")");
-                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE)"
-                                            + " VALUES ('Y" + DataBase.payId + "','CREDIT','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
-                                            + "'," + 0 + "," + totalpay + ")");
-
-                                }
-                            }
-                        }
+//                        
                         if (tsales2.getModel().getValueAt(i, 1).equals("giro")) {
                             if (pay != 0) {
                                 if (tsales2.getModel().getValueAt(i, j) != null) {
@@ -1381,24 +1350,24 @@ public class Jurnal extends javax.swing.JPanel {
                                     System.out.println(sql);
                                     DataBase.setExecuteUpdate(sql);
 
-                                    DataBase.jurnalId++;
-                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
-                                            + "','1070','giro receivable',0," + totalpay + ",'" + jTextArea1.getText() + "')");
-                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
-                                            + "','1070','giro receivable',0," + totalpay + ",'" + jTextArea1.getText() + "')");
-
-                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
-                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
-                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
-                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
-                                    DataBase.jurnalId--;
+//                                    DataBase.jurnalId++;
+//                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1070','giro receivable',0," + totalpay + ",'" + jTextArea1.getText() + "')");
+//                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1070','giro receivable',0," + totalpay + ",'" + jTextArea1.getText() + "')");
+//
+//                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
+//                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
+//                                    DataBase.jurnalId--;
                                     DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
                                             + " VALUES ('Y" + DataBase.payId + "','GIRO','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
                                             + "'," + tsales2.getModel().getValueAt(i, j) + "," + totalpay + ",'" + giroDate + "')");
                                     System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
                                             + " VALUES ('Y" + DataBase.payId + "','giro','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
                                             + "'," + tsales2.getModel().getValueAt(i, j) + "," + totalpay + ",'" + giroDate + "')");
-                                    DataBase.jurnalId++;
+//                                    DataBase.jurnalId++;
                                 }
                                 if (tsales2.getModel().getValueAt(i, j) == null) {
                                     totalpay = pay;
@@ -1407,6 +1376,52 @@ public class Jurnal extends javax.swing.JPanel {
                                     System.out.println(sql);
                                     DataBase.setExecuteUpdate(sql);
 
+//                                    DataBase.jurnalId++;
+//                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1070','giro receivable',0," + totalpay + ",'" + jTextArea1.getText() + "')");
+//                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1070','giro receivable',0," + totalpay + ",'" + jTextArea1.getText() + "')");
+//
+//                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
+//                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
+//                                    DataBase.jurnalId--;
+                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
+                                            + " VALUES ('Y" + DataBase.payId + "','giro','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + 0 + "," + totalpay + ",'" + giroDate + "')");
+                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
+                                            + " VALUES ('Y" + DataBase.payId + "','giro','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + 0 + "," + totalpay + ",'" + giroDate + "')");
+//                                    DataBase.jurnalId++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+//        System.out.println(qty + " " + price + " " + discount+" "+tax);
+            //add giro jurnal
+            for (int i = 0; i < tsales2.getRowCount(); i++) {
+                for (int j = 0; j < tsales2.getColumnCount(); j++) {
+                    if (j == 2) {
+                        if (tsales2.getModel().getValueAt(i, 1) == "giro") {
+                            if (pay != 0) {
+                                if (tsales2.getModel().getValueAt(i, j) != null) {
+                                    DataBase.jurnalId++;
+                                    totalpay = pay * (Integer) tsales2.getModel().getValueAt(i, j) / 100;
+                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','1070','giro receivable',0," + totalpay + ",'" + jTextArea1.getText() + "')");
+                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','1070','giro receivable',0," + totalpay + ",'" + jTextArea1.getText() + "')");
+
+                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
+                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
+                                }
+                                if (tsales2.getModel().getValueAt(i, j) == null) {
+                                    totalpay = pay;
                                     DataBase.jurnalId++;
                                     System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
                                             + "','1070','giro receivable',0," + totalpay + ",'" + jTextArea1.getText() + "')");
@@ -1417,21 +1432,12 @@ public class Jurnal extends javax.swing.JPanel {
                                             + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
                                     DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
                                             + "','1020','bank'," + totalpay + ",0,'" + jTextArea1.getText() + "')");
-                                    DataBase.jurnalId--;
-                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
-                                            + " VALUES ('Y" + DataBase.payId + "','giro','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
-                                            + "'," + 0 + "," + totalpay + ",'" + giroDate + "')");
-                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
-                                            + " VALUES ('Y" + DataBase.payId + "','giro','" + DataBase.jurnalDate + "-" + tfDate.getText() + "','J" + DataBase.jurnalId
-                                            + "'," + 0 + "," + totalpay + ",'" + giroDate + "')");
-                                    DataBase.jurnalId++;
                                 }
                             }
                         }
                     }
                 }
             }
-//        System.out.println(qty + " " + price + " " + discount+" "+tax);
             System.out.println(pay);
             System.out.println(total);
             //to add auto id
@@ -1651,6 +1657,99 @@ public class Jurnal extends javax.swing.JPanel {
                                 }
                             }
                         }
+                        if (tPur2.getModel().getValueAt(i, 1) == "giro") {
+                            if (pay != 0) {
+                                if (tPur2.getModel().getValueAt(i, j) != null) {
+                                    totalpay = pay * (Integer) tPur2.getModel().getValueAt(i, j) / 100;
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfPurDate.getText()
+                                            + "','2030','giro payable',0," + totalpay + ",'" + jTextArea2.getText() + "')";
+                                    System.out.println(sql);
+                                    DataBase.setExecuteUpdate(sql);
+
+//                                    DataBase.jurnalId++;
+//                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','2030','giro payable'," + totalpay + ",0,'" + jTextArea2.getText() + "')");
+//                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','2030','giro payable'," + totalpay + ",0,'" + jTextArea2.getText() + "')");
+//
+//                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')");
+//                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')");
+//                                    DataBase.jurnalId--;
+                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
+                                            + " VALUES ('Y" + DataBase.payId + "','GIRO','" + DataBase.jurnalDate + "-" + tfPurDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + tPur2.getModel().getValueAt(i, j) + "," + totalpay + ",'" + giroDate + "')");
+                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
+                                            + " VALUES ('Y" + DataBase.payId + "','giro','" + DataBase.jurnalDate + "-" + tfPurDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + tPur2.getModel().getValueAt(i, j) + "," + totalpay + ",'" + giroDate + "')");
+//                                    DataBase.jurnalId++;
+                                }
+                                if (tPur2.getModel().getValueAt(i, j) == null) {
+                                    totalpay = pay;
+                                    String sql = "INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfPurDate.getText()
+                                            + "','2030','giro payable',0," + totalpay + ",'" + jTextArea2.getText() + "')";
+                                    System.out.println(sql);
+                                    DataBase.setExecuteUpdate(sql);
+
+//                                    DataBase.jurnalId++;
+//                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','2030','giro payable'," + totalpay + ",0,'" + jTextArea2.getText() + "')");
+//                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','2030','giro payable'," + totalpay + ",0,'" + jTextArea2.getText() + "')");
+//
+//                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')");
+//                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+//                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')");
+//                                    DataBase.jurnalId--;
+                                    DataBase.setExecuteUpdate("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
+                                            + " VALUES ('Y" + DataBase.payId + "','GIRO','" + DataBase.jurnalDate + "-" + tfPurDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + 0 + "," + totalpay + ",'" + giroDate + "')");
+                                    System.out.println("INSERT INTO PAYMENT(PAYMENT_ID, PAYMENT_TYPE, JURNAL_DATE, JURNAL_ID, PAYMENT_PERCENT, PAYMENT_VALUE,payment_date)"
+                                            + " VALUES ('Y" + DataBase.payId + "','giro','" + DataBase.jurnalDate + "-" + tfPurDate.getText() + "','J" + DataBase.jurnalId
+                                            + "'," + 0 + "," + totalpay + ",'" + giroDate + "')");
+//                                    DataBase.jurnalId++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //add giro jurnal
+            for (int i = 0; i < tPur2.getRowCount(); i++) {
+                for (int j = 0; j < tPur2.getColumnCount(); j++) {
+                    if (j == 2) {
+                        if (tPur2.getModel().getValueAt(i, 1) == "giro") {
+                            if (pay != 0) {
+                                if (tPur2.getModel().getValueAt(i, j) != null) {
+                                    totalpay = pay * (Integer) tPur2.getModel().getValueAt(i, j) / 100;
+                                    DataBase.jurnalId++;
+                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','2030','giro payable'," + totalpay + ",0,'" + jTextArea2.getText() + "')");
+                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','2030','giro payable'," + totalpay + ",0,'" + jTextArea2.getText() + "')");
+
+                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')");
+                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')");
+                                }
+                                if (tPur2.getModel().getValueAt(i, j) == null) {
+                                    totalpay = pay;
+                                    DataBase.jurnalId++;
+                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','2030','giro payable'," + totalpay + ",0,'" + jTextArea2.getText() + "')");
+                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','2030','giro payable'," + totalpay + ",0,'" + jTextArea2.getText() + "')");
+
+                                    System.out.println("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')");
+                                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + giroDate
+                                            + "','1020','bank',0," + totalpay + ",'" + jTextArea2.getText() + "')");
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1678,7 +1777,8 @@ public class Jurnal extends javax.swing.JPanel {
             System.out.println("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
                     + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+//            JOptionPane.showMessageDialog(this, e);
+            e.printStackTrace();
         }
 
     }//GEN-LAST:event_jButton6ActionPerformed
