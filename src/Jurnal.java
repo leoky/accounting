@@ -103,9 +103,9 @@ public class Jurnal extends javax.swing.JPanel {
                     if (DataBase.jurnalShow == 2) {
                         tPur2.setValueAt(cPayment.getSelectedItem(), tPur2.getSelectedRow(), 1);
                     }
-//                    if (DataBase.jurnalShow == 4) {
+                    if (DataBase.jurnalShow == 4) {
 //                        tExpend2.setValueAt(cPayment.getSelectedItem(), tExpend2.getSelectedRow(), 1);
-//                    }
+                    }
                     if (cPayment.getSelectedItem() == "giro") {
                         giroDate = JOptionPane.showInputDialog("DUE DATE");
                         System.out.println("due date :" + giroDate);
@@ -1180,7 +1180,7 @@ public class Jurnal extends javax.swing.JPanel {
         jLabel31.setText("Payment");
 
         cOpPay.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        cOpPay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cash", "bank", "credit", "giro" }));
+        cOpPay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cash", "bank", "credit" }));
         cOpPay.setName(""); // NOI18N
 
         jButton26.setText("Submit");
@@ -2200,19 +2200,19 @@ public class Jurnal extends javax.swing.JPanel {
             }
             if (tfOpPrice.getText() != null) {
                 DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfOpDate.getText()
-                        + "','" + a + "','" + cOperasionalType.getSelectedItem() + "'," + tfOpPrice.getText() + ",0,'" + taOpDesc.getText() + "')");
+                    + "','" + a + "','" + cOperasionalType.getSelectedItem() + "'," + tfOpPrice.getText() + ",0,'" + taOpDesc.getText() + "')");
 
                 if (cOpPay.getSelectedItem() == "cash") {
                     DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfOpDate.getText()
-                            + "','1010','cash',0," + tfOpPrice.getText() + ",'" + taOpDesc.getText() + "')");
+                        + "','1010','cash',0," + tfOpPrice.getText() + ",'" + taOpDesc.getText() + "')");
                 }
                 if (cOpPay.getSelectedItem() == "credit") {
                     DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfOpDate.getText()
-                            + "','2020','account payable',0," + tfOpPrice.getText() + ",'" + taOpDesc.getText() + "')");
+                        + "','2020','account payable',0," + tfOpPrice.getText() + ",'" + taOpDesc.getText() + "')");
                 }
                 if (cOpPay.getSelectedItem() == "bank") {
                     DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfOpDate.getText()
-                            + "','1020','bank',0," + tfOpPrice.getText() + ",'" + taOpDesc.getText() + "')");
+                        + "','1020','bank',0," + tfOpPrice.getText() + ",'" + taOpDesc.getText() + "')");
                 }
             }
 
@@ -2220,9 +2220,9 @@ public class Jurnal extends javax.swing.JPanel {
             DataBase.jurnalId++;
 
             DataBase.setExecuteUpdate("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
-                    + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
+                + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
             System.out.println("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
-                    + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
+                + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
             //icon detail
             Detail.setCash(DataBase.date);
             Detail.setBank(DataBase.date);
