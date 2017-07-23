@@ -130,6 +130,7 @@ public class Invoice extends javax.swing.JPanel {
                     jLabel9.setText(rs.getString("inventory_id"));
                     jLabel10.setText(rs.getString("payment_id"));
                     double value = rs.getDouble("s_value");
+                    totalValue += value;
                     pay += rs.getString("payment_type") + " " + rs.getString("payment_percent") + "% ,";
                     model.addRow(new Object[]{
                         rs.getString("product_name"),

@@ -37,6 +37,8 @@ public class Jurnal extends javax.swing.JPanel {
 //    }))));
 //   
 
+    Statement st = DataBase.getStatement();
+    ResultSet rs;
 //    jTable1 table = table.getColumnModel().getColumn(2);
     private int count = -1;
 //    JComboBox[] combobox1 = new JComboBox[10];
@@ -72,7 +74,7 @@ public class Jurnal extends javax.swing.JPanel {
 //                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     try {
                         if (DataBase.jurnalShow == 3) {
-                            tExped1.setValueAt(cExpend.getSelectedItem(), tExped1.getSelectedRow(), 1);
+//                            tExped1.setValueAt(cExpend.getSelectedItem(), tExped1.getSelectedRow(), 1);
                         }
                     } catch (Exception ee) {
                         ee.printStackTrace();
@@ -101,9 +103,9 @@ public class Jurnal extends javax.swing.JPanel {
                     if (DataBase.jurnalShow == 2) {
                         tPur2.setValueAt(cPayment.getSelectedItem(), tPur2.getSelectedRow(), 1);
                     }
-                    if (DataBase.jurnalShow == 4) {
-                        tExpend2.setValueAt(cPayment.getSelectedItem(), tExpend2.getSelectedRow(), 1);
-                    }
+//                    if (DataBase.jurnalShow == 4) {
+//                        tExpend2.setValueAt(cPayment.getSelectedItem(), tExpend2.getSelectedRow(), 1);
+//                    }
                     if (cPayment.getSelectedItem() == "giro") {
                         giroDate = JOptionPane.showInputDialog("DUE DATE");
                         System.out.println("due date :" + giroDate);
@@ -199,8 +201,8 @@ public class Jurnal extends javax.swing.JPanel {
         tsales2.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(cPayment));
         tPur1.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(cProduct));
         tPur2.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(cPayment));
-        tExped1.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(cExpend));
-        tExpend2.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(cPayment));
+//        tExped1.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(cExpend));
+//        tExpend2.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(cPayment));
     }
 
     /**
@@ -291,17 +293,6 @@ public class Jurnal extends javax.swing.JPanel {
         jScrollPane10 = new javax.swing.JScrollPane();
         taConvertDesc = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tExped1 = new javax.swing.JTable();
-        jButton17 = new javax.swing.JButton();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        tExpend2 = new javax.swing.JTable();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         tfPaymentDate = new javax.swing.JTextField();
@@ -316,6 +307,22 @@ public class Jurnal extends javax.swing.JPanel {
         jButton23 = new javax.swing.JButton();
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        tfOpDate = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        cOpPay = new javax.swing.JComboBox<>();
+        jButton26 = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
+        tfOpPrice = new javax.swing.JTextField();
+        jButton27 = new javax.swing.JButton();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        taOpDesc = new javax.swing.JTextArea();
+        jButton28 = new javax.swing.JButton();
+        jButton29 = new javax.swing.JButton();
+        cOperasionalType = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
 
         jButton3.setText("jButton3");
 
@@ -519,7 +526,7 @@ public class Jurnal extends javax.swing.JPanel {
                         .addGroup(salesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bSubmit))))
-                .addContainerGap(1791, Short.MAX_VALUE))
+                .addContainerGap(1798, Short.MAX_VALUE))
         );
 
         jTabbedPane8.addTab("SALES", sales);
@@ -727,7 +734,7 @@ public class Jurnal extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(1786, Short.MAX_VALUE))
+                .addContainerGap(1793, Short.MAX_VALUE))
         );
 
         jTabbedPane8.addTab("PURCHASING", jPanel2);
@@ -844,7 +851,7 @@ public class Jurnal extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1837, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1844, Short.MAX_VALUE)
                 .addComponent(jButton9)
                 .addGap(93, 93, 93))
         );
@@ -920,7 +927,7 @@ public class Jurnal extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel29)
                     .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(2225, Short.MAX_VALUE))
+                .addContainerGap(2232, Short.MAX_VALUE))
         );
 
         jTabbedPane8.addTab("RETURN", jPanel6);
@@ -1028,145 +1035,10 @@ public class Jurnal extends javax.swing.JPanel {
                         .addComponent(jLabel8)))
                 .addGap(39, 39, 39)
                 .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1961, Short.MAX_VALUE))
+                .addContainerGap(1968, Short.MAX_VALUE))
         );
 
         jTabbedPane8.addTab("CONVERT", jPanel7);
-
-        jPanel3.setBackground(new java.awt.Color(248, 238, 160));
-        jPanel3.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel3ComponentShown(evt);
-            }
-        });
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jLabel17.setText("Date");
-
-        jButton8.setText("Submit");
-
-        tExped1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        tExped1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "TYPE", "TYPE", "PRICE", "DISCOUNT", "TAX"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                true, false, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tExped1.setPreferredSize(new java.awt.Dimension(375, 250));
-        tExped1.setRowHeight(25);
-        jScrollPane7.setViewportView(tExped1);
-
-        jButton17.setText("SEARCH");
-
-        tExpend2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        tExpend2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "PAYMENT", "PAYMENT", "PERCENT", "COMMMENT"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                true, false, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tExpend2.setMaximumSize(new java.awt.Dimension(2147483647, 75));
-        tExpend2.setMinimumSize(new java.awt.Dimension(60, 75));
-        tExpend2.setPreferredSize(new java.awt.Dimension(300, 75));
-        tExpend2.setRowHeight(25);
-        jScrollPane9.setViewportView(tExpend2);
-
-        jButton18.setText("SUBMIT");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
-            }
-        });
-
-        jButton19.setText("CANCEL");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton8)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(jButton17))
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE)
-                            .addComponent(jScrollPane9)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jButton18)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton19)))
-                .addContainerGap(300, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton18)
-                    .addComponent(jButton19))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1846, Short.MAX_VALUE)
-                .addComponent(jButton8)
-                .addGap(23, 23, 23))
-        );
-
-        jTabbedPane8.addTab("OPERASIONAL", jPanel3);
 
         jPanel1.setBackground(new java.awt.Color(248, 238, 160));
         jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -1284,10 +1156,149 @@ public class Jurnal extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton23)
                     .addComponent(jButton24))
-                .addContainerGap(1963, Short.MAX_VALUE))
+                .addContainerGap(1970, Short.MAX_VALUE))
         );
 
         jTabbedPane8.addTab("PAYMENT", jPanel1);
+
+        jPanel5.setBackground(new java.awt.Color(248, 238, 160));
+        jPanel5.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel5ComponentShown(evt);
+            }
+        });
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel23.setText("Date");
+
+        tfOpDate.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel30.setText("Description");
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel31.setText("Payment");
+
+        cOpPay.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        cOpPay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cash", "bank", "credit", "giro" }));
+        cOpPay.setName(""); // NOI18N
+
+        jButton26.setText("Submit");
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel32.setText("Price");
+
+        tfOpPrice.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        tfOpPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfOpPriceActionPerformed(evt);
+            }
+        });
+
+        jButton27.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jButton27.setText("REFRESH");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
+
+        taOpDesc.setColumns(20);
+        taOpDesc.setRows(5);
+        jScrollPane12.setViewportView(taOpDesc);
+
+        jButton28.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jButton28.setText("ADD");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+
+        jButton29.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jButton29.setText("CANCEL");
+
+        cOperasionalType.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel16.setText("Type");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jButton26)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel16))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(tfOpDate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51)
+                                .addComponent(jButton27))
+                            .addComponent(cOpPay, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tfOpPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cOperasionalType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel30))
+                        .addGap(306, 306, 306))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfOpDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton27)
+                            .addComponent(jLabel30))))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cOperasionalType, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16))
+                        .addGap(64, 64, 64)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(cOpPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(tfOpPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1862, Short.MAX_VALUE)
+                .addComponent(jButton26)
+                .addGap(93, 93, 93))
+        );
+
+        jTabbedPane8.addTab("OPERSIONAL", jPanel5);
 
         add(jTabbedPane8, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
@@ -1968,20 +1979,6 @@ public class Jurnal extends javax.swing.JPanel {
         setUpdateCombo();
     }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void jPanel3ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentShown
-        DataBase.jurnalShow = 3;
-        System.out.println("jurnal show " + DataBase.jurnalShow);
-        Detail.setJurnalDetail(" (OPERASIONAL)");
-    }//GEN-LAST:event_jPanel3ComponentShown
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton18ActionPerformed
-
     private void jPanel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentShown
         DataBase.jurnalShow = 4;
         System.out.println("jurnal show " + DataBase.jurnalShow);
@@ -2177,12 +2174,82 @@ public class Jurnal extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton23ActionPerformed
 
+    private void tfOpPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfOpPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfOpPriceActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        //OPERSIONAL REFRESH
+        try {
+            rs = st.executeQuery("SELECT CHART_NAME FROM CHART WHERE CHART_ID LIKE '6%'");
+            cOperasionalType.removeAllItems();
+            while (rs.next()) {
+                cOperasionalType.addItem(rs.getString("chart_name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        String a = null;
+        try {
+            rs = st.executeQuery("SELECT CHART_ID FROM CHART WHERE CHART_NAME LIKE '" + cOperasionalType.getSelectedItem() + "'");
+            while (rs.next()) {
+                a = rs.getString("chart_id");
+            }
+            if (tfOpPrice.getText() != null) {
+                DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfOpDate.getText()
+                        + "','" + a + "','" + cOperasionalType.getSelectedItem() + "'," + tfOpPrice.getText() + ",0,'" + taOpDesc.getText() + "')");
+
+                if (cOpPay.getSelectedItem() == "cash") {
+                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfOpDate.getText()
+                            + "','1010','cash',0," + tfOpPrice.getText() + ",'" + taOpDesc.getText() + "')");
+                }
+                if (cOpPay.getSelectedItem() == "credit") {
+                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfOpDate.getText()
+                            + "','2020','account payable',0," + tfOpPrice.getText() + ",'" + taOpDesc.getText() + "')");
+                }
+                if (cOpPay.getSelectedItem() == "bank") {
+                    DataBase.setExecuteUpdate("INSERT INTO JURNAL VALUES('J" + DataBase.jurnalId + "','" + DataBase.jurnalDate + "-" + tfOpDate.getText()
+                            + "','1020','bank',0," + tfOpPrice.getText() + ",'" + taOpDesc.getText() + "')");
+                }
+            }
+
+            //id
+            DataBase.jurnalId++;
+
+            DataBase.setExecuteUpdate("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
+                    + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
+            System.out.println("UPDATE SYSTEM SET SYSTEM_JURNAL=" + DataBase.jurnalId + ", SYSTEM_SALES =" + DataBase.salesId + " , SYSTEM_PUR = " + DataBase.purId
+                    + ",  SYSTEM_PAY = " + DataBase.payId + " WHERE SYSTEM_DATE ='" + DataBase.jurnalDate + "-1';");
+            //icon detail
+            Detail.setCash(DataBase.date);
+            Detail.setBank(DataBase.date);
+            //
+            //clear
+            tfPrivetDate.setText("");
+            tfPrivetPrice.setText("");
+            taPrivetDesc.setText("");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jPanel5ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel5ComponentShown
+        DataBase.jurnalShow = 3;
+        System.out.println("jurnal show " + DataBase.jurnalShow);
+        Detail.setJurnalDetail(" (OPERASIONAL) ");
+    }//GEN-LAST:event_jPanel5ComponentShown
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAddProdcut;
     private javax.swing.JButton bRemoveProduct;
     private javax.swing.JButton bSubmit;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cOpPay;
+    private javax.swing.JComboBox<String> cOperasionalType;
     private javax.swing.JComboBox<String> cPrivet;
     private javax.swing.JComboBox<String> cPurFrom;
     private javax.swing.JComboBox<String> cSalesTo;
@@ -2194,9 +2261,6 @@ public class Jurnal extends javax.swing.JPanel {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
@@ -2204,12 +2268,15 @@ public class Jurnal extends javax.swing.JPanel {
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
+    private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
@@ -2224,11 +2291,12 @@ public class Jurnal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -2236,6 +2304,9 @@ public class Jurnal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2244,38 +2315,37 @@ public class Jurnal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane8;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel sales;
-    private javax.swing.JTable tExped1;
-    private javax.swing.JTable tExpend2;
     private javax.swing.JTable tPur1;
     private javax.swing.JTable tPur2;
     private javax.swing.JTextArea taConvertDesc;
+    private javax.swing.JTextArea taOpDesc;
     private javax.swing.JTextArea taPaymentDesc;
     private javax.swing.JTextArea taPrivetDesc;
     private javax.swing.JTextField tfConvert;
     private javax.swing.JTextField tfConvertPrice;
     private javax.swing.JTextField tfDate;
+    private javax.swing.JTextField tfOpDate;
+    private javax.swing.JTextField tfOpPrice;
     private javax.swing.JTextField tfPaymentDate;
     private javax.swing.JTextField tfPaymentPrice;
     private javax.swing.JTextField tfPrivetDate;

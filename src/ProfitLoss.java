@@ -202,7 +202,7 @@ public class ProfitLoss extends javax.swing.JPanel {
                 while (rs.next()) {
                     int expend = rs.getInt("sum(debit)-sum(credit)");
                     totalExpend += expend;
-                    model.addRow(new Object[]{a, "", String.format("Rp.%,d", totalExpend)});
+                    model.addRow(new Object[]{a, "", String.format("Rp.%,f", totalExpend)});
                     totalFinalExpend += totalExpend;
                     totalExpend = 0;
                 }

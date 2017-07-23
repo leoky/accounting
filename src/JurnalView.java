@@ -197,7 +197,7 @@ public class JurnalView extends javax.swing.JPanel {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jButton3.setText("PRINT");
+        jButton3.setText("COUNT");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
