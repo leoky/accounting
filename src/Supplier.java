@@ -330,7 +330,7 @@ public class Supplier extends javax.swing.JPanel {
                 String s=(String) tCust.getValueAt(tCust.getSelectedRow(), 0);
                 String sql = "UPDATE supplier SET sup_name='" + jTextField1.getText() + "', sup_company ='" + jTextField2.getText()
                         + "', sup_phone='" + jTextField3.getText() + "', sup_address = '" + jTextField4.getText()
-                        + "' WHERE sup_id='" + s.substring(1) + "'";
+                        + "' WHERE sup_id='" + s + "'";
                 System.out.println(sql);
                 DataBase.setExecuteUpdate(sql);
                 clearText();

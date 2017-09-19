@@ -278,8 +278,15 @@ public class JurnalView extends javax.swing.JPanel {
         try {
             int check = JOptionPane.showConfirmDialog(this, "ARE YOU WANT TO DELETE ID = " + jTable1.getValueAt(jTable1.getSelectedRow(), 0));
             if (check == JOptionPane.YES_OPTION) {
-                String sql = "DELETE FROM JURNAL WHERE jurnal_id='" + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "'";
+                String sql = "DELETE FROM JURNAL WHERE jurnal_id='" + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and jurnal_date like"
+                        + "'" + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "'";
                 DataBase.setExecuteUpdate(sql);
+                DataBase.setExecuteUpdate("DELETE FROM payment WHERE jurnal_id='" + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and jurnal_date like '"
+                        + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "'");
+                DataBase.setExecuteUpdate("DELETE FROM invoice WHERE jurnal_id='" + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and jurnal_date like '"
+                        + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "'");
+                DataBase.setExecuteUpdate("DELETE FROM inventory WHERE jurnal_id='" + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' and jurnal_date like '"
+                        + (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "'");
                 updateTable();
                 JOptionPane.showMessageDialog(this, "DELETE SUCCESS");
             }

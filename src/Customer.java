@@ -327,7 +327,7 @@ public class Customer extends javax.swing.JPanel {
                 String s=(String) tCust.getValueAt(tCust.getSelectedRow(), 0);
                 String sql = "UPDATE CUSTOMER SET cust_name='" + jTextField1.getText() + "', cust_company ='" + jTextField2.getText()
                         + "', cust_phone='" + jTextField3.getText() + "', cust_address = '" + jTextField4.getText()
-                        + "' WHERE cust_id='" + s.substring(1) + "'";
+                        + "' WHERE cust_id='" + s + "'";
                 System.out.println(sql);
                 DataBase.setExecuteUpdate(sql);
                 clearText();
